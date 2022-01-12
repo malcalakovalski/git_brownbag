@@ -1,0 +1,371 @@
+/* colour scheme */
+/* http://metrocolor.live */
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,700');
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600);
+@import url("https://use.fontawesome.com/releases/v5.2.0/css/all.css");
+
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Cabin:600,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap);
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+body {
+  font-family: 'Lato', 'Noto Sans', sans-serif;
+  font-size: 26px;
+  color: #1a2a3a;
+}
+h1, h2, h3 {
+  font-family: 'Roboto Condensed', Arial, sans-serif;
+  font-weight: normal;
+  margin-top: 5px; /* do i need this? */
+  margin-bottom: 0;
+}
+.remark-slide-content h1 { font-size: 58px; }
+.remark-slide-content h2 { font-size: 42px; }
+.remark-slide-content h3 { font-size: 34px; }
+.remark-slide-content {
+  background-position: center;
+  background-repeat: no-repeat;
+  display: table-cell;
+  font-size: 32px;
+  padding: 0px 30px;
+}
+.footnote {
+  position: absolute;
+  bottom: 1em;
+  font-style: italic;
+  font-size: 70%;
+}
+
+li { line-height: 2.0em; }
+li p { line-height: 1.15em; }
+ol {
+	list-style: none;
+	counter-reset: li;
+}
+ol li {
+	counter-increment: li
+}
+ol li::before {
+	content: ". "counter(li);
+  color: #a84d18;
+	display: inline-block;
+	width: 1em;
+	margin-right: 0.5em;
+	text-align: right;
+	direction: rtl;
+}
+ul li {
+  list-style-type: none;
+}
+ul li:before {
+  content: "\f105";
+  font-family: "Font Awesome\ 5 Free";
+  margin-right: 10px;
+  color: #4ba946;
+  font-weight: 900;
+}
+ul li li:before {
+  content: "\f101";
+  font-family: "Font Awesome\ 5 Free";
+  margin-right: 10px;
+  font-weight: 900;
+}
+.x ul li:before {
+  content: "\f00d";
+  font-family: "Font Awesome\ 5 Free";
+  color: #D00000;
+  font-weight: 900;
+}
+.checked ul li:before {
+  content: "\f00c";
+  font-family: "Font Awesome\ 5 Free";
+  color: #31a354;
+  font-weight: 900;
+}
+
+.purple{ color: #c077af; }
+.red { color: #ef342a; }
+.orange { color: #f57125; }
+.blue { color: #22b6ed; }
+.green { color: #1fb27f; }
+.yellow { color: #faca07; }
+.brown {color: #a84d18; }
+.gray {color: #525252; }
+
+.rotate-45 {transform: rotate(45deg); }
+.large { font-size: 120%; }
+.small { font-size: 80%; }
+
+.center {
+  text-align: center;
+}
+
+/* Links */
+
+/* link color */
+a, a > code {
+  color: #3f88ca;
+}
+
+/* unvisited link */
+a:link {
+    color: #3f88ca;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: #3f88ca;
+    text-decoration: underline;
+}
+
+
+/* mouse over link */
+a:hover, a:active, a:focus {
+    color: #1f5386;
+    text-decoration: underline;
+}
+
+.remark-code {
+  color: #2c6793;
+}
+
+.remark-inline-code {
+  color: #2c6793;
+  font-size: 1em;
+}
+
+.remark-code-line-highlighted {
+  background-color: #2c6793;
+}
+
+
+
+
+.pull-left {
+  float: left;
+  width: 49%;
+}
+.pull-right {
+  float: right;
+  width: 49%;
+}
+.pull-right + *  {
+  clear: both;
+}
+
+
+
+pre {
+  white-space: pre-wrap;
+}
+#slideshow .slide .content code {
+  font-size: 0.8em;
+}
+#slideshow .slide .content pre code {
+  font-size: 0.9em;
+  padding: 15px;
+}
+.inverse {
+  background: #003A79;
+  color: #fafafa;
+}
+.inverse a {
+  color: #b2d68c;
+}
+.inverse h1, .inverse h2 {
+  color: #f2f2f6;
+  font-size: 72px;
+  line-height: 1.2em;
+}
+
+/* Slide-specific styling */
+#slide-inverse .footnote {
+  bottom: 12px;
+  left: 20px;
+}
+#slide-how .slides {
+  font-size: 0.9em;
+  position: absolute;
+  top:  151px;
+  right: 140px;
+}
+#slide-how .slides h3 {
+  margin-top: 0.2em;
+}
+#slide-how .slides .first, #slide-how .slides .second {
+  padding: 1px 20px;
+  height: 90px;
+  width: 120px;
+  -moz-box-shadow: 0 0 10px #777;
+  -webkit-box-shadow: 0 0 10px #777;
+  box-shadow: 0 0 10px #777;
+}
+#slide-how .slides .first {
+  background: #fff;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 1;
+}
+#slide-how .slides .second {
+  position: relative;
+  background: #fff;
+  z-index: 0;
+}
+
+/* Two-column layout */
+.left-column {
+  color: #777;
+  width: 10%;
+  height: 92%;
+  float: left;
+}
+  .left-column h2:last-of-type, .left-column h3:last-child {
+    color: #000;
+  }
+.right-column {
+  width: 75%;
+  height: 92%;
+  float: right;
+}
+
+/* Title */
+
+.title-font {
+  font-family: 'Roboto Condensed', 'Arial Narrow OS', Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+.title-slide {
+  background-image: url("../images/dn.jpg");
+  background-repeat: no-repeat;
+  background-position: 96% 5%;
+  background-size: auto 172px;
+  background-color: #FAFAFA;
+}
+
+.title-slide-ggbrookings {
+  background-image: url("../images/ggbrookings-logo.png");
+  background-repeat: no-repeat;
+  background-position: 96% 5%;
+  background-size: auto 172px;
+  background-color: #FAFAFA;
+}
+
+.title-slide h1 {
+  font-size: 42px;
+  color: #1a467b;
+  line-height: 1.2em;
+  text-align: left !important;
+  position: absolute;
+  top: 5%;
+  border-bottom: 5px solid #1a467b;
+}
+
+.title-slide h2 {
+  padding-top: 98px;
+  padding-bottom: 98px;
+  font-size: 78px;
+  color: #1a2a3a;
+  line-height: 1.2em;
+  text-align: center !important;
+}
+
+.title-slide h3 {
+  font-family: 'Cabin';
+  font-size: 48px;
+  color: #69686d;
+  bottom: 10%;
+  text-align: center !important;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+
+
+blockquote {
+  background: #f9f9f9;
+  border-left: solid px  #ccc;
+  quotes: "\201C""\201D""\2018""\2019";
+  font-size: 24px;
+}
+
+
+
+.alert {
+  border-color: #ef342a;
+  border-width: 2px;
+  border-style: solid;
+}
+
+/* highlight-last-item */
+.highlight-last-item > ul > li,
+.highlight-last-item > ol > li {
+  opacity: 0.5;
+}
+.highlight-last-item > ul > li:last-of-type,
+.highlight-last-item > ol > li:last-of-type {
+  opacity: 1;
+}
+
+/* Only show last code output */
+
+.show-only-last-code-result pre + pre:not(:last-of-type) code[class="remark-code"] {
+    display: none;
+}
+
+/* Padding */
+
+.side-padded {
+  padding: 0 10%;
+}
+
+
+/* custom.css */
+.left-code {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+
+.left-long-code {
+  color: #777;
+  width: 46%;
+  height: 92%;
+  float: left;
+}
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+.right-narrow-plot {
+  width: 52%;
+    float: right;
+  padding-left: 1%;
+}
+
+/* custom.css */
+.plot-callout {
+  height: 225px;
+  width: 450px;
+  bottom: 5%;
+  right: 5%;
+  position: absolute;
+  padding: 0px;
+  z-index: 100;
+}
+.plot-callout img {
+  width: 100%;
+  border: 4px solid #23373B;
+}
