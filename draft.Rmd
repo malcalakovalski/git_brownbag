@@ -1,0 +1,128 @@
+---
+title: "Version Control with Git and GitHub"
+author: 
+  - "Manuel Alcalá Kovalski"
+date: '`r Sys.Date()`'
+output:
+   xaringan::moon_reader:
+    lib_dir: libs
+    chakra: libs/remark-lastest.min.js
+    css: [xaringan-themer.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#003A79",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF",
+  background_color = '#FAFAFA',
+)
+
+
+# Set color values
+# colors = c(
+#   red = "#f34213",
+#   purple = "#3e2f5b",
+#   orange = "#ff8811",
+#   green = "#136f63",
+#   white = "#FFFFFF"
+# )
+ #e76254,  /* Red */
+    #ef8a47,  /* Orange */
+    #ffd06f,  /* Yellow */
+    #aadce0,  /* Blue 1 */
+    #72bcd5,  /* Blue 2 */
+    #376795,  /* Blue 3 */
+    #1e466e   /* Blue 4 */
+xaringanExtra::use_tile_view()
+xaringanExtra::use_share_again()
+xaringanExtra::use_panelset()
+
+
+xaringanExtra::use_tachyons()
+xaringanExtra::use_clipboard()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,
+  mute_unhighlighted_code = TRUE
+)
+
+```
+
+```{r xaringan-logo, echo=FALSE}
+# xaringanExtra::use_logo(
+#   image_url = "images/logo.jpg",
+#   width = "330px",
+#   height = "192px"
+# )
+```
+
+
+
+# What you will learn today
+
+--
+
+.box-1.medium.sp-after-half[Tell the story of your project]
+
+--
+
+.box-5.medium.sp-after-half[Experiment with changes]
+
+--
+
+
+.box-2.medium.sp-after-half[Backup your work]
+
+--
+
+.box-8.medium.sp-after-half[Collaborate on projects]
+
+---
+
+layout: false
+name: what-is-git
+class: center middle section-title section-title-1
+
+# What is Git?
+
+---
+
+layout: true
+class: title title-1
+
+---
+
+# What is Git?
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+"Git is an application that runs on your computer, like a web brower or a word processor."
+.tr[
+— Tom Stuart
+]]
+
+---
+# What does it do?
+
+--
+
+![some caption](images/what-is-version-control.gif)

@@ -1,11 +1,11 @@
 ---
 title: "Version Control with Git and GitHub"
 author: 
-  - "Manuel Alcalá Kovalski"
+  - "Manuel Alcala Kovalski"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: [xaringan-themer.css]
+    css: ["remark.css",  "my-theme.css",xaringan-themer.css]
     nature:
       slideNumberFormat: "%current%"
       highlightStyle: github
@@ -15,15 +15,29 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-  fig.width=9, fig.height=3.5, fig.retina=3,
-  out.width = "100%",
-  cache = FALSE,
+library('knitr')
+librarian::shelf(tidyverse, ggbrookings, palmerpenguins, magick)
+old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
+options(
+  htmltools.dir.version = FALSE,
+  htmltools.preserve.raw = FALSE,
+  tibble.width = 60,
+  tibble.print_min = 6,
+  crayon.enabled = TRUE
+)
+opts_chunk$set(
   echo = TRUE,
-  message = FALSE, 
   warning = FALSE,
-  hiline = TRUE
+  message = FALSE,
+  comment = "#>",
+  fig.path = 'figure/',
+  cache.path = 'cache/',
+  cache = TRUE,
+  fig.retina = 3,
+  fig.align = 'center',
+  fig.show = 'hold',
+  dpi = 120,
+  eval = FALSE
 )
 ```
 
@@ -31,36 +45,14 @@ knitr::opts_chunk$set(
 library(xaringanthemer)
 style_duo_accent(
   primary_color = "#003A79",
-  secondary_color = "#FF961C",
-  inverse_header_color = "#FFFFFF",
-  background_color = '#FAFAFA',
-  # Fonts
-  header_font_google = google_font("Jost", "600"),
-  text_font_google = google_font("Jost")
+  secondary_color = "#003a79",
+  inverse_header_color = "#FAFAFA"
 )
-
-# Set color values
-# colors = c(
-#   red = "#f34213",
-#   purple = "#3e2f5b",
-#   orange = "#ff8811",
-#   green = "#136f63",
-#   white = "#FFFFFF"
-# )
- #e76254,  /* Red */
-    #ef8a47,  /* Orange */
-    #ffd06f,  /* Yellow */
-    #aadce0,  /* Blue 1 */
-    #72bcd5,  /* Blue 2 */
-    #376795,  /* Blue 3 */
-    #1e466e   /* Blue 4 */
 xaringanExtra::use_tile_view()
 xaringanExtra::use_share_again()
 xaringanExtra::use_panelset()
-xaringanExtra::use_logo(
-  image_url = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/xaringan.png"
-)
-xaringanExtra::use_search(show_icon = TRUE)
+
+
 xaringanExtra::use_tachyons()
 xaringanExtra::use_clipboard()
 xaringanExtra::use_fit_screen()
@@ -68,332 +60,113 @@ xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,
   mute_unhighlighted_code = TRUE
 )
-
 ```
 
-## Why Typography
+# What is Git/GitHub?
 
-Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.
-
-[Link to another slide](#colors).
-
-### Lorem Ipsum
-
-Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor. 
-Lacinia neque mollis nascetur neque urna velit bibendum. 
-Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec.
-
-- Dolor cubilia nostra nunc sodales
-
-- Consectetur aliquet mauris blandit
-
-- Ipsum dis nec porttitor urna sed
-
----
-name: colors
-
-## Colors
-
-.left-column[
-Text color
-
-[Link Color](#3)
-
-**Bold Color**
-
-_Italic Color_
-
-`Inline Code`
-]
-
-.right-column[
-Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3), 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Erat nam at lectus urna.
-Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat. 
-_Eros donec ac odio tempor_ orci dapibus ultrices. 
-Id porta nibh venenatis cras sed felis eget velit aliquet.
-Aliquam id diam maecenas ultricies mi.
-Enim sit amet 
-`code_color("inline")`
-venenatis urna cursus eget nunc scelerisque viverra.
-]
 
 ---
 
-# Big Topic or Inverse Slides `#`
-
-## Slide Headings `##`
-
-### Sub-slide Headings `###`
-
-#### Bold Call-Out `####`
-
-This is a normal paragraph text. Only use header levels 1-4.
-
-##### Possible, but not recommended `#####`
-
-###### Definitely don't use h6 `######`
-
----
-
-# Left-Column Headings
-
-.left-column[
-## First
-
-## Second
-
-## Third
-]
-
-.right-column[
-Dolor quis aptent mus a dictum ultricies egestas.
-
-Amet egestas neque tempor fermentum proin massa!
-
-Dolor elementum fermentum pharetra lectus arcu pulvinar.
-]
-
----
-class: inverse center middle
-
-# Topic Changing Interstitial
-
---
-
-```
-class: inverse center middle
+# Has this ever happened to you?
+```{r, eval=TRUE, echo = FALSE, out.height = '550px', out.width='550px'}
+knitr::include_graphics('images/what-is-version-control.gif')
 ```
 
----
-layout: true
 
-## Blocks
 
----
 
-### Blockquote
+???
+ou know that great paper you just wrote, you were done with it, so you called it “final”. And then, you sent it to your advisor for her last comments. So you renamed it “final_thisone”. A few days passed, and you realized there was a typo in your figure, and you renamed it “final_thisone_really”. A couple of weeks pass, you get comments back from the reviewer, you start changing it and you renamed your file “final_submitted”. And then… your advisor think you should rewrite the conclusion and the file become “final_submitted_really”.
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+A year pass, you are mentoring a new undergrad in the lab, and she asks you for your final document so she can look at your methods… You open your folder, and mesmerized by the number of final labelled final, you forget which one if the correct one. Sounds familiar?
 
 ---
 
-### Code Blocks
+# Enter Git/GitHub 
 
-#### R Code
++ Git and GitHub allow for easy management and sharing of data analytic content
 
-```{r eval=FALSE}
-ggplot(gapminder) +
-  aes(x = gdpPercap, y = lifeExp, size = pop, color = country) +
-  geom_point() +
-  facet_wrap(~year)
-```
-
-#### JavaScript
-
-```js
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+```{r, eval=TRUE, echo = FALSE, out.height = '450px', out.width='500px'}
+knitr::include_graphics('images/git-management.png')
 ```
 
 ---
 
-### More R Code
+#Ok so what is Git/GitHub?
 
-```{r eval=FALSE}
-dplyr::starwars %>% dplyr::slice_sample(n = 4)
-```
-
----
-
-```{r message=TRUE, eval=requireNamespace("cli", quietly = TRUE)}
-cli::cli_alert_success("It worked!")
-```
-
---
-
-```{r message=TRUE}
-message("Just a friendly message")
-```
-
---
-
-```{r warning=TRUE}
-warning("This could be bad...")
-```
-
---
-
-```{r error=TRUE}
-stop("I hope you're sitting down for this")
-```
++ Just software!
+ > Git is an application that runs on your computer, like a web brower or a word processor  - [Tom Stuart](https://r-pkgs.org/index.html)
++ GitHub is also a collaboration tool and an ecosystem of version controlled projects (repositories)
 
 
 ---
-layout: true
 
-## Tables
-
----
-exclude: `r if (requireNamespace("tibble", quietly=TRUE)) "false" else "true"`
-
-```{r eval=requireNamespace("tibble", quietly=TRUE)}
-tibble::as_tibble(mtcars)
-```
-
----
-
-```{r}
-knitr::kable(head(mtcars), format = 'html')
-```
-
----
-exclude: `r if (requireNamespace("DT", quietly=TRUE)) "false" else "true"`
-
-```{r eval=requireNamespace("DT", quietly=TRUE)}
-DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
-```
-
----
-layout: true
-
-## Lists
-
----
+# Sure, but how are Git/GitHub related?
 
 .pull-left[
-#### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
++ Git is the command line software that handles version control on your repository
++ When you use GitHub, Git is always doing its things behind the scenes
 ]
 
 .pull-right[
-
-#### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-]
-
----
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
----
-
-### Nesting an ol in ul in an ol
-
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-  1. level 4 item (ol)
-  1. level 4 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-
----
-layout: true
-
-## Plots
-
----
-
-```{r plot-example, eval=requireNamespace("ggplot2", quietly=TRUE)}
-library(ggplot2)
-(g <- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point())
++ GitHub is a service that hosts your repository online and helps you work with collaborators
++ It's a web interface for version control 
++ Most often you will interface with GitHub with the command line, GitHub Desktop App, or RStudio.
+```{r, eval=TRUE, echo = FALSE, out.height = '250px', out.width='250px'}
+knitr::include_graphics('images/github-interface.png')
 ```
 
----
 
-```{r plot-example-themed, eval=requireNamespace("ggplot2", quietly=TRUE)}
-g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) +
-  ggtitle("A Plot About Cars")
-```
-
----
-layout: false
-
-## Square image
-
-<center><img src="https://octodex.github.com/images/labtocat.png" height="400px" /></center>
-
-.footnote[GitHub Octocat]
-
----
-
-### Wide image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
-
-.footnote[Wide images scale to 100% slide width]
-
----
-
-## Two images
-
-.pull-left[
-![](https://octodex.github.com/images/motherhubbertocat.png)
 ]
+---
+# What is Version Control?
 
-.pull-right[
-![](https://octodex.github.com/images/dinotocat.png)
-]
+
+> Git is an application that runs on your computer, like a web brower or a word processor  
+> - [Tom Stuart](https://r-pkgs.org/index.html)
+
+--
+
+It lets you:
++ Keep the entire history of a file and inspect a file throughout its life time
+--
+
++ Tag particular version so you can go back to them easily
+
+--
++ Collaborate easily and make contributions transparent
+
+--
++ Experiment with code and feature without breaking the main project
+
+---
+# What is Git?
+
+Git is a particular implementation of version control. It’s really powerful and has many features but we will only scratch the surface.
 
 ---
 
-### Definition lists can be used with HTML syntax.
+# Git basics 
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+- Repository: 
+Git manages the evolution of a set of files – called a repository or repo – in a highly structured way. 
+
+When you start a Git project on your computer, you are going to store the entire history of the project locally. The storage of your project and its history is called a repository
+
+However, the great advantage of using version control such as Git is to be able to collaborate with other people
 
 ---
-class: center, middle
+# What is GitHub?
 
-# Thanks!
+GitHub is a commercial website that lets you store your repository publicly for free (you need to pay if you want to keep them private, you can also get an educative account with an .edu email address that will give you some free private accounts). There are other website that offer similar services including BitBucket. Storing your repositories on these website has many advantages. It offers a friendly interface to many common operations so that you don’t have to remember how to do them at the command line. They also provide other useful features including an “Issue tracker” and wikis.
 
-Slides created via the R packages:
+---
+# Git Workflow
 
-[**xaringan**](https://github.com/yihui/xaringan)<br>
-[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+The typical workflow goes like this: - you create/edit/modify a file inside your repository - you stage the changes to the staging area - you commit these changes which creates a permanent snapshot of the file in the Git directory along with a message that indicates what you did to the file.
 
-The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+When you start a new project, the files in your working directory are untracked, you will first need to add them to your repository before Git can keep track of them and their history.
+
+At this stage, everything is still on your hard drive. To upload your modifications (i.e., your commits) to GitHub you need to push to it.
+
+If you are working with other people you are also committing your shared repository on GitHub, you will need to pull to bring their modifications into your local copy of the repository.

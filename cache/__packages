@@ -1,0 +1,17 @@
+base
+usethis
+gert
+xaringanthemer
+ggplot2
+knitr
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+ggbrookings
+palmerpenguins
+magick
