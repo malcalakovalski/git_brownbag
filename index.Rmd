@@ -340,8 +340,11 @@ class: center, middle, inverse, title-slide-ggbrookings
 + To get changes from one branch into another, you __merge__ them
 + __Merges__ help manage combining your work with someone else's
 ]
+
+
 .pull-right[
- ```{r, eval=TRUE, echo = FALSE}
+
+```{r, eval=TRUE, echo = FALSE}
 knitr::include_graphics('images/merge.png')
 ```
 ]
