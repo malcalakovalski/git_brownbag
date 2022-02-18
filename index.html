@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Version Control with Git and GitHub</title>
+    <title>Git With The Times</title>
     <meta charset="utf-8" />
     <meta name="author" content="Manuel Alcala Kovalski" />
     <meta name="date" content="2022-02-18" />
@@ -14,7 +14,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Version Control with Git and GitHub
+# Git With The Times
 ### Manuel Alcala Kovalski
 ### 2022-02-18
 
@@ -96,6 +96,18 @@ class: center, middle, inverse, title-slide-ggbrookings
 + With GitHub your repo con live on your computer and on the web
 
 &lt;img src="imgs/git-brownbag-repo.png" height="400px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Repository (Repo)
+.pull-left[
++ It's really easy to create one from GitHub 
++ Clicking on your repositories &gt; New will take you to a screen with some options for how to initialize your repository 
+]
+
+.pull-right[
+&lt;img src="imgs/create-repo.png" style="display: block; margin: auto;" /&gt;
+]
 ---
 
 # Remote
@@ -280,16 +292,75 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
+class: center, middle, inverse, title-slide-ggbrookings
+# Integrating Git/GitHub with R
+
+---
+
+
+# Happy Git with R
+
++ You can choose from several options when using Git/GitHub:
+  + Command-line (Terminal)
+  + GitHub Desktop App (Available from the Software Center)
+  + RStudio
+
+
++ Since I do most of my work in `R`, I'd rather not have to open a new program just to use Git.
++ You can use:
+  + The RStudio git pane for a point and click
+  + Packages to facilate git workflows. I highly recommend __{`gert`}__ and __{`usethis`}__
+  
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
+]
+
+.pull-right[
+&lt;img src="imgs/new-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
++ Choose _Empty Project_
+]
+
+.pull-right[
+&lt;img src="imgs/empty-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+--- 
+
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
++ Choose _Empty Project_
++ Check the option _Create a git repository_ before clicking _Create Project_
+]
+
+.pull-right[
+&lt;img src="imgs/create-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
 # References
 
 
 TBD
 ---
-
-
-
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
