@@ -4,7 +4,7 @@
     <title>Version Control with Git and GitHub</title>
     <meta charset="utf-8" />
     <meta name="author" content="Manuel Alcala Kovalski" />
-    <meta name="date" content="2022-02-17" />
+    <meta name="date" content="2022-02-18" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="remark.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Version Control with Git and GitHub
 ### Manuel Alcala Kovalski
-### 2022-02-17
+### 2022-02-18
 
 ---
 
@@ -25,10 +25,6 @@ class: center, middle, inverse, title-slide
 
 
 
-# What is Git/GitHub?
-
-
----
 
 # Has this ever happened to you?
 &lt;img src="images/what-is-version-control.gif" width="550px" height="550px" style="display: block; margin: auto;" /&gt;
@@ -51,7 +47,7 @@ A year pass, you are mentoring a new undergrad in the lab, and she asks you for 
 
 ---
 
-#Ok so what is Git/GitHub?
+#Ok, so what is Git/GitHub? 
 
 + Just software!
  &gt; Git is an application that runs on your computer, like a web brower or a word processor  - [Tom Stuart](https://r-pkgs.org/index.html)
@@ -62,71 +58,234 @@ A year pass, you are mentoring a new undergrad in the lab, and she asks you for 
 
 # Sure, but how are Git/GitHub related?
 
+
 .pull-left[
+&lt;img src="images/git-logo.png" width="350px" height="200px" style="display: block; margin: auto;" /&gt;
+
 + Git is the command line software that handles version control on your repository
 + When you use GitHub, Git is always doing its things behind the scenes
+
 ]
 
 .pull-right[
+&lt;img src="images/github-logo.png" height="200px" style="display: block; margin: auto;" /&gt;
+
 + GitHub is a service that hosts your repository online and helps you work with collaborators
 + It's a web interface for version control 
 + Most often you will interface with GitHub with the command line, GitHub Desktop App, or RStudio.
-&lt;img src="images/git-management.png" width="250px" height="250px" style="display: block; margin: auto;" /&gt;
+]
 
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+# Terms you should know 
+
+---
+
+# Version control
+
++ A system for tracking changes (or versions) of anything (document, file, image, etc) 
++ Version control allows you to **time-travel**
+
+---
+
+# Repository (Repo)
+
++ This is where all your project files live
++ You can use Git to take snapshots (version control) of all the files in a folder
++ With GitHub your repo con live on your computer and on the web
+
+&lt;img src="images/git-brownbag-repo.png" height="400px" style="display: block; margin: auto;" /&gt;
+---
+
+# Remote
+
++ You should always back up your work, ideally somewhere different than your local drive. 
++ In _Git_, this place is called the __remote repository__
++ _GitHub_ is just a very popular remote
++ Some alternative remotes are:
+  + [Bitbucket](https://bitbucket.org)
+  + [GitLab](https://about.gitlab.com)
+ 
+---
+
+# Cloning
+
++ To get some work from a remote for the first time you need to __clone__ it!
+&lt;img src="images/cloning.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+# Commit
+
++ When you want to take a snapshot of a file or files, you create a **commit**
++ A commit is equivalent to saving a version of a file(s)
++ Every time you make a commit, you are leaving a breadcrumb of those files to come back to
++ Git allows you to **tell the story of your project** by tracking changes through commit messages.
+
+
+&lt;img src="images/commits-iris.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+# Collaborating with Git/GitHub
+
+---
+# You'll never _work_ alone 
+
++ As the __owner__ of a repo you can:
+  + Add collaborators
+  + Each collaborator can __read/write files__ in the repo, create __branches__, and __merge__ changes directly
+  
+  
+&lt;img src="images/contributors.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Getting everyone on the same page
+
+.pull-left[
++ You can **fetch** changes to the repo on GitHub (the **remote repository**) to see if any modified files are not on your computer
++ If you want those changes to take effect on your computer you can **pull** them from the remote repository on GitHub
++ If *you* make a commit that you want others to pull, then you need to *push* it to the remote repository
+]
+.pull-right[
+
+&lt;img src="images/fetch-v-pull.jpeg" style="display: block; margin: auto;" /&gt;
 
 ]
----
-# What is Version Control?
-
-
-&gt; Git is an application that runs on your computer, like a web brower or a word processor  
-&gt; - [Tom Stuart](https://r-pkgs.org/index.html)
-
---
-
-It lets you:
-+ Keep the entire history of a file and inspect a file throughout its life time
---
-
-+ Tag particular version so you can go back to them easily
-
---
-+ Collaborate easily and make contributions transparent
-
---
-+ Experiment with code and feature without breaking the main project
-
----
-# What is Git?
-
-Git is a particular implementation of version control. It’s really powerful and has many features but we will only scratch the surface.
 
 ---
 
-# Git basics 
+# But what about me???
 
-- Repository: 
-Git manages the evolution of a set of files – called a repository or repo – in a highly structured way. 
-
-When you start a Git project on your computer, you are going to store the entire history of the project locally. The storage of your project and its history is called a repository
-
-However, the great advantage of using version control such as Git is to be able to collaborate with other people
++ If you want others to see the changes *you've* made, you can **push** those commits to GitHub.
+&lt;img src="images/collaboration.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 ---
-# What is GitHub?
 
-GitHub is a commercial website that lets you store your repository publicly for free (you need to pay if you want to keep them private, you can also get an educative account with an .edu email address that will give you some free private accounts). There are other website that offer similar services including BitBucket. Storing your repositories on these website has many advantages. It offers a friendly interface to many common operations so that you don’t have to remember how to do them at the command line. They also provide other useful features including an “Issue tracker” and wikis.
+# Forking &amp; Pull Requests
+
+.pull-left[
++ It would be scary if anyone could _make_ changes to your project files
++ However, anyone can __*suggest*__ changes 
++ __Forking__ allows you to work on a _copy_ of a repo you're not an official contributor to
++ Once you're done with your __suggested__ changes you can make a __pull request__
++ The owner of the repo will determine if your changes are cool and __merge__ them in
++ __Pull requests__ allow you to collaborate on all public projects on GitHub
+]
+
+
+.pull-right[
+&lt;img src="images/pull-request.png" style="display: block; margin: auto;" /&gt;
+]
 
 ---
-# Git Workflow
 
-The typical workflow goes like this: - you create/edit/modify a file inside your repository - you stage the changes to the staging area - you commit these changes which creates a permanent snapshot of the file in the Git directory along with a message that indicates what you did to the file.
+# Issues
 
-When you start a new project, the files in your working directory are untracked, you will first need to add them to your repository before Git can keep track of them and their history.
++ You can also submit issues if you’re having trouble with software
 
-At this stage, everything is still on your hard drive. To upload your modifications (i.e., your commits) to GitHub you need to push to it.
+&lt;img src="images/tidyverse-issues.png" style="display: block; margin: auto;" /&gt;
 
-If you are working with other people you are also committing your shared repository on GitHub, you will need to pull to bring their modifications into your local copy of the repository.
+---
+# Help me help you
+
++ If you use __`{ggbrookings}`__ and are having trouble or if you've found a bug, please submit an issue
++ If you have a question or are running into a problem, it's likely other people are too. 
++ Posting an issue gives me an opportunity to respond to these issues in a public forum that others can benefit from too!
+
+
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+# Git and GitHub let you experiment
+
+---
+# Parallel Universes
++ Everything we've covered so far has been very linear
++ This is usually not how research work, often you want to experiment with easily discardable changes
++ You can do this in Git with __branches__
++ You can use __branches__ when working as a team or on a new feature
+
+
+&lt;img src="images/fim-branch.png" height="350px" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Parallel Universes
+.pull-left[
++ The default branch is called the __master__ branch
+]
+.pull-left[
+
+&lt;img src="images/master-branch.png" height="400px" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+# Parallel Universes
+.pull-left[
++ The default branch is called the __master__ branch
++ You can add your own branches too
+]
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+&lt;img src="images/feature-branch.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+# Parallel Universes
+.pull-left[
++ The default branch is called the __master__ branch
++ You can add your own branches too
++ You'll often do a lot of work on a branch
+]
+.pull-left[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="images/wild-experiment-branch.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+
+## Branches are useful for trying out stuff since they're really easy to throw away if you decide against your changes
+
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+
+## It's common for the master branch to be what you have published or finalized whereas other branches can contain work in progress
+
+---
+
+# Merging your changes  
+
+.pull-left[
++ Once you finish your work on a branch, you'll want to get it back into the master branch
++ To get changes from one branch into another, you __merge__ them
++ __Merges__ help manage combining your work with someone else's
+]
+.pull-right[
+ &lt;img src="images/merge.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# References
+
+
+TBD
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
