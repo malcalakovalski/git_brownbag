@@ -354,7 +354,7 @@ knitr::include_graphics('imgs/merge.png')
 # References
 
 
-TBD.
+TBD
 ---
 
 
