@@ -65,7 +65,7 @@ xaringanExtra::use_extra_styles(
 
 # Has this ever happened to you?
 ```{r, eval=TRUE, echo = FALSE, out.height = '550px', out.width='550px'}
-knitr::include_graphics('images/what-is-version-control.gif')
+knitr::include_graphics('imgs/what-is-version-control.gif')
 ```
 
 
@@ -83,7 +83,7 @@ A year pass, you are mentoring a new undergrad in the lab, and she asks you for 
 + Git and GitHub allow for easy management and sharing of data analytic content
 
 ```{r, eval=TRUE, echo = FALSE, out.height = '450px', out.width='500px'}
-knitr::include_graphics('images/git-management.png')
+knitr::include_graphics('imgs/git-management.png')
 ```
 
 ---
@@ -102,7 +102,7 @@ knitr::include_graphics('images/git-management.png')
 
 .pull-left[
 ```{r, eval=TRUE, echo = FALSE, out.height = '200px', out.width='350px'}
-knitr::include_graphics('images/git-logo.png')
+knitr::include_graphics('imgs/git-logo.png')
 ```
 
 + Git is the command line software that handles version control on your repository
@@ -112,7 +112,7 @@ knitr::include_graphics('images/git-logo.png')
 
 .pull-right[
 ```{r, eval=TRUE, echo = FALSE, out.height = '200px'}
-knitr::include_graphics('images/github-logo.png')
+knitr::include_graphics('imgs/github-logo.png')
 ```
 
 + GitHub is a service that hosts your repository online and helps you work with collaborators
@@ -141,7 +141,7 @@ class: center, middle, inverse, title-slide-ggbrookings
 + With GitHub your repo con live on your computer and on the web
 
 ```{r, eval=TRUE, echo = FALSE, out.height='400px'}
-knitr::include_graphics('images/git-brownbag-repo.png')
+knitr::include_graphics('imgs/git-brownbag-repo.png')
 ```
 ---
 
@@ -160,7 +160,7 @@ knitr::include_graphics('images/git-brownbag-repo.png')
 
 + To get some work from a remote for the first time you need to __clone__ it!
 ```{r, eval=TRUE, echo = FALSE}
-knitr::include_graphics('images/cloning.png')
+knitr::include_graphics('imgs/cloning.png')
 ```
 
 
@@ -176,7 +176,7 @@ knitr::include_graphics('images/cloning.png')
 
 
 ```{r, eval=TRUE, echo = FALSE, out.height = '300px'}
-knitr::include_graphics('images/commits-iris.png')
+knitr::include_graphics('imgs/commits-iris.png')
 ```
 
 
@@ -194,7 +194,7 @@ class: center, middle, inverse, title-slide-ggbrookings
   
   
 ```{r, eval=TRUE, echo = FALSE, out.height = '300px'}
-knitr::include_graphics('images/contributors.png')
+knitr::include_graphics('imgs/contributors.png')
 ```
 
 ---
@@ -209,7 +209,7 @@ knitr::include_graphics('images/contributors.png')
 .pull-right[
 
 ```{r, eval=TRUE, echo = FALSE}
-knitr::include_graphics('images/fetch-v-pull.jpeg')
+knitr::include_graphics('imgs/fetch-v-pull.jpeg')
 ```
 
 ]
@@ -220,7 +220,7 @@ knitr::include_graphics('images/fetch-v-pull.jpeg')
 
 + If you want others to see the changes *you've* made, you can **push** those commits to GitHub.
 ```{r, eval=TRUE, echo = FALSE, out.height = '300px'}
-knitr::include_graphics('images/collaboration.png')
+knitr::include_graphics('imgs/collaboration.png')
 ```
 
 ---
@@ -239,7 +239,7 @@ knitr::include_graphics('images/collaboration.png')
 
 .pull-right[
 ```{r, eval=TRUE, echo = FALSE }
-knitr::include_graphics('images/pull-request.png')
+knitr::include_graphics('imgs/pull-request.png')
 ```
 ]
 
@@ -250,7 +250,7 @@ knitr::include_graphics('images/pull-request.png')
 + You can also submit issues if you’re having trouble with software
 
 ```{r, eval=TRUE, echo = FALSE }
-knitr::include_graphics('images/tidyverse-issues.png')
+knitr::include_graphics('imgs/tidyverse-issues.png')
 ```
 
 ---
@@ -275,7 +275,7 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 
 ```{r, eval=TRUE, echo = FALSE, out.height = '350px'}
-knitr::include_graphics('images/fim-branch.png')
+knitr::include_graphics('imgs/fim-branch.png')
 ```
 
 
@@ -287,7 +287,7 @@ knitr::include_graphics('images/fim-branch.png')
 .pull-left[
 
 ```{r, eval=TRUE, echo = FALSE, out.height = '400px'}
-knitr::include_graphics('images/master-branch.png')
+knitr::include_graphics('imgs/master-branch.png')
 ```
 
 ]
@@ -301,7 +301,7 @@ knitr::include_graphics('images/master-branch.png')
 .pull-left[
 <br><br>
 ```{r, eval=TRUE, echo = FALSE}
-knitr::include_graphics('images/feature-branch.png')
+knitr::include_graphics('imgs/feature-branch.png')
 ```
 
 ]
@@ -316,7 +316,7 @@ knitr::include_graphics('images/feature-branch.png')
 .pull-left[
 <br><br><br><br>
 ```{r, eval=TRUE, echo = FALSE}
-knitr::include_graphics('images/wild-experiment-branch.png')
+knitr::include_graphics('imgs/wild-experiment-branch.png')
 ```
 ]
 ---
@@ -345,7 +345,7 @@ class: center, middle, inverse, title-slide-ggbrookings
 .pull-right[
 
 ```{r, eval=TRUE, echo = FALSE}
-knitr::include_graphics('images/merge.png')
+knitr::include_graphics('imgs/merge.png')
 ```
 ]
 
