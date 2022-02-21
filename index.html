@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Version Control with Git and GitHub</title>
+    <title>Git With The Times</title>
     <meta charset="utf-8" />
     <meta name="author" content="Manuel Alcala Kovalski" />
-    <meta name="date" content="2022-02-18" />
+    <meta name="date" content="2022-02-21" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="remark.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
@@ -14,9 +14,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Version Control with Git and GitHub
+# Git With The Times
 ### Manuel Alcala Kovalski
-### 2022-02-18
+### 2022-02-21
 
 ---
 
@@ -51,6 +51,9 @@ A year pass, you are mentoring a new undergrad in the lab, and she asks you for 
 
 + Just software!
  &gt; Git is an application that runs on your computer, like a web brower or a word processor  - [Tom Stuart](https://r-pkgs.org/index.html)
+ 
+--
+
 + GitHub is also a collaboration tool and an ecosystem of version controlled projects (repositories)
 
 
@@ -85,27 +88,55 @@ class: center, middle, inverse, title-slide-ggbrookings
 # Version control
 
 + A system for tracking changes (or versions) of anything (document, file, image, etc) 
+
+--
 + Version control allows you to **time-travel**
+
+???
+Unsure about this slide
+
 
 ---
 
 # Repository (Repo)
 
 + This is where all your project files live
+
+--
 + You can use Git to take snapshots (version control) of all the files in a folder
+
+--
 + With GitHub your repo con live on your computer and on the web
 
 &lt;img src="imgs/git-brownbag-repo.png" height="400px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Repository (Repo)
+.pull-left[
++ It's really easy to create one from GitHub 
++ Clicking on your repositories &gt; New will take you to a screen with some options for how to initialize your repository 
+]
+
+.pull-right[
+&lt;img src="imgs/create-repo.png" style="display: block; margin: auto;" /&gt;
+]
 ---
 
 # Remote
 
-+ You should always back up your work, ideally somewhere different than your local drive. 
-+ In _Git_, this place is called the __remote repository__
-+ _GitHub_ is just a very popular remote
+.pull-left[
++ You should always back up your work, ideally somewhere different than your local drive. In _Git_, this place is called the __remote repository__
++ _GitHub_ is just a very popular __remote__
 + Some alternative remotes are:
   + [Bitbucket](https://bitbucket.org)
   + [GitLab](https://about.gitlab.com)
+]
+
+.pull-right[
+&lt;img src="imgs/remotes.png" style="display: block; margin: auto;" /&gt;
+]
+
  
 ---
 
@@ -116,15 +147,70 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 
 ---
+# Git Areas
+.pull-left[
++ There are three core areas to git. These are the:
+  + Working Tree
+  + Staging Area (also known as Index)
+  + Local Repository. 
++ When working in a git repository files and modifications will travel from the Working Tree to the Staging Area and finish at the Local Repository. 
+]
 
+.pull-right[
+&lt;img src="imgs/git-areas.png" style="display: block; margin: auto;" /&gt;
+]
+---
 
-# Commit
+# The Working Tree
+
++ This is the area where you are currently working. 
+
+--
++ Also known as the “__untracked__” area of git. 
+
+--
++ Here if you make changes and do not explicitly save them to git, you will lose the changes made to your files. 
+
+--
++ This loss of changes occurs because git is not aware of the files or changes in the __Working Tree__ until you tell it to pay attention to them.
+
+--
++ If you make changes to files in your working tree git will recognize that they are modified, but until you tell git “Hey pay attention to these files,” it won’t save anything that goes on in them.
+---
+
+# Staging Area
+
++ The Staging Area is when git starts tracking and saving changes that occur in files. 
++ You tell git that I want to track these specific files, then git says okay and moves them from you Working Tree to the Staging Area and says “Cool, I know about this file in its entirety.” 
++ However, if you make any more additional changes after adding a file to the Staging Area, git will not know about those specific changes until you tell it to see them. You explicitly have to tell git to notice the edits in your files.
+
+&gt; When we stage a particular file we say we're __adding__ it to the __staging area__ because the command to do so is `git add 'filename'`
+
+---
+
+# Local Repository
+
++ The area that saves everything 
+
+--
++ That's it...
+
+--
++ We can add our staged changes to the __local repository__ by __committing__ them. 
+---
+
+# Commits
 
 + When you want to take a snapshot of a file or files, you create a **commit**
+
+--
 + A commit is equivalent to saving a version of a file(s)
-+ Every time you make a commit, you are leaving a breadcrumb of those files to come back to
+
+--
 + Git allows you to **tell the story of your project** by tracking changes through commit messages.
 
+--
++ Every time you make a commit, you are leaving a breadcrumb of those files to come back to
 
 &lt;img src="imgs/commits-iris.png" height="300px" style="display: block; margin: auto;" /&gt;
 
@@ -139,6 +225,8 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 + As the __owner__ of a repo you can:
   + Add collaborators
+
+--
   + Each collaborator can __read/write files__ in the repo, create __branches__, and __merge__ changes directly
   
   
@@ -196,7 +284,11 @@ class: center, middle, inverse, title-slide-ggbrookings
 # Help me help you
 
 + If you use __`{ggbrookings}`__ and are having trouble or if you've found a bug, please submit an issue
+
+--
 + If you have a question or are running into a problem, it's likely other people are too. 
+
+--
 + Posting an issue gives me an opportunity to respond to these issues in a public forum that others can benefit from too!
 
 
@@ -208,8 +300,14 @@ class: center, middle, inverse, title-slide-ggbrookings
 ---
 # Parallel Universes
 + Everything we've covered so far has been very linear
+
+--
 + This is usually not how research work, often you want to experiment with easily discardable changes
+
+--
 + You can do this in Git with __branches__
+
+--
 + You can use __branches__ when working as a team or on a new feature
 
 
@@ -280,16 +378,246 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
-# References
+class: center, middle, inverse, title-slide-ggbrookings
+# Integrating Git/GitHub with R
 
-
-TBD
 ---
 
 
+# Happy Git with R
+
++ You can choose from several options when using Git/GitHub:
+
+--
+  + Command-line (Terminal)
+  
+--
+  + GitHub Desktop App (Available from the Software Center)
+  
+--
+  + RStudio
+--
+
++ Since I do most of my work in `R`, I'd rather not have to open a new program just to use Git.
+
+--
++ You can use:
+  + The RStudio git pane for a point and click
+--
+
+  + Packages to facilate git workflows. I highly recommend __{`gert`}__ and __{`usethis`}__
+  
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
+]
+
+.pull-right[
+&lt;img src="imgs/new-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
++ Choose _Empty Project_
+]
+
+.pull-right[
+&lt;img src="imgs/empty-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
++ Choose _Empty Project_
++ Check the option _Create a git repository_ before clicking _Create Project_
+]
+
+.pull-right[
+&lt;img src="imgs/create-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+Congratulations, you have a new project with git versioning enabled!!
 
 
+---
 
+# Wait what about my old projects? 
+
+.pull-left[
++ It's not too late to set up git on your existing projects!!
++ Again, create a project but this time choose _Existing Directory_
+]
+
+.pull-right[
+&lt;img src="imgs/existing-directory.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Wait what about my old projects? 
+
+.pull-left[
++ It's not too late to set up git on your existing projects!!
++ Again, create a project but this time choose _Existing Directory_
++ Go to the _Tools menu_ -&gt; _Version Control_ -&gt; _Project Setup_…
+]
+
+.pull-right[
+&lt;img src="imgs/project-setup.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Wait what about my old projects? 
+
+.pull-left[
++ It's not too late to set up git on your existing projects!!
++ Again, create a project but this time choose _Existing Directory_
++ Go to the _Tools menu_ -&gt; _Version Control_ -&gt; _Project Setup_…
++ This will open a new window. Change the _None_ setting by choosing _Git_ from the drop-down menu
+]
+
+.pull-right[
+&lt;img src="imgs/choose-git.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+#  Git Pane
+
+.pull-left[
++ Now that you have enabled git versioning for your Project, a “Git” tab should have been added to your interface next to “Environment” and “History” tabs
++ Note that the __.gitignore file__ is automatically generated by RStudio. It lists all file formats you do _not_ want to track. 
++ You can edit this document to add any type of file you would like git not to track. One quick way of editing it is with `usethis::edit_git_ignore(scope = 'project')`
+]
+
+.pull-right[
+&lt;img src="imgs/git-pane.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+]
+
+.pull-right[
+&lt;img src="imgs/staging.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+]
+
+.pull-right[
+&lt;img src="imgs/commiting.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+  + Push/Pull
+]
+
+.pull-right[
+&lt;img src="imgs/commiting.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+  + Push/Pull
+  + Revert your changes
+]
+
+.pull-right[
+&lt;img src="imgs/revert-commit.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+  + Push/Pull
+  + Revert your changes
+  + View your repo's commit history
+]
+
+.pull-right[
+&lt;img src="imgs/commit-history.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git with R
+
+.pull-left[
+
+```r
+library(gert)
+git_status()
+```
+
+]
+
+.pull-right[
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;#&amp;gt; &lt;span style='color: #555555;'&gt;# A tibble: 121 × 3&lt;/span&gt;
+#&amp;gt;   file                                                  
+#&amp;gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;                                                 
+#&amp;gt; &lt;span style='color: #555555;'&gt;1&lt;/span&gt; ~$cps-pop-control-table.xlsx                          
+#&amp;gt; &lt;span style='color: #555555;'&gt;2&lt;/span&gt; cache/unnamed-chunk-1_8d15cbf4dca5d12f53d6a50ef7c2e62…
+#&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; cache/unnamed-chunk-1_8d15cbf4dca5d12f53d6a50ef7c2e62…
+#&amp;gt; &lt;span style='color: #555555;'&gt;4&lt;/span&gt; cache/unnamed-chunk-1_8d15cbf4dca5d12f53d6a50ef7c2e62…
+#&amp;gt; &lt;span style='color: #555555;'&gt;5&lt;/span&gt; cache/unnamed-chunk-10_483cf07b834b5070f7196226021e72…
+#&amp;gt; &lt;span style='color: #555555;'&gt;6&lt;/span&gt; cache/unnamed-chunk-10_483cf07b834b5070f7196226021e72…
+#&amp;gt;   status  staged
+#&amp;gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;lgl&amp;gt;&lt;/span&gt; 
+#&amp;gt; &lt;span style='color: #555555;'&gt;1&lt;/span&gt; deleted FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;2&lt;/span&gt; new     FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; new     FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;4&lt;/span&gt; new     FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;5&lt;/span&gt; new     FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;6&lt;/span&gt; new     FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;# … with 115 more rows&lt;/span&gt;
+&lt;/CODE&gt;&lt;/PRE&gt;
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

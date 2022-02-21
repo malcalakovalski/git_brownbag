@@ -1,5 +1,5 @@
 ---
-title: "Version Control with Git and GitHub"
+title: "Git With The Times"
 author: 
   - "Manuel Alcala Kovalski"
 date: '`r Sys.Date()`'
@@ -92,6 +92,9 @@ knitr::include_graphics('imgs/git-management.png')
 
 + Just software!
  > Git is an application that runs on your computer, like a web brower or a word processor  - [Tom Stuart](https://r-pkgs.org/index.html)
+ 
+--
+
 + GitHub is also a collaboration tool and an ecosystem of version controlled projects (repositories)
 
 
@@ -130,29 +133,61 @@ class: center, middle, inverse, title-slide-ggbrookings
 # Version control
 
 + A system for tracking changes (or versions) of anything (document, file, image, etc) 
+
+--
 + Version control allows you to **time-travel**
+
+???
+Unsure about this slide
+
 
 ---
 
 # Repository (Repo)
 
 + This is where all your project files live
+
+--
 + You can use Git to take snapshots (version control) of all the files in a folder
+
+--
 + With GitHub your repo con live on your computer and on the web
 
 ```{r, eval=TRUE, echo = FALSE, out.height='400px'}
 knitr::include_graphics('imgs/git-brownbag-repo.png')
 ```
+
+---
+
+# Repository (Repo)
+.pull-left[
++ It's really easy to create one from GitHub 
++ Clicking on your repositories > New will take you to a screen with some options for how to initialize your repository 
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/create-repo.png')
+```
+]
 ---
 
 # Remote
 
-+ You should always back up your work, ideally somewhere different than your local drive. 
-+ In _Git_, this place is called the __remote repository__
-+ _GitHub_ is just a very popular remote
+.pull-left[
++ You should always back up your work, ideally somewhere different than your local drive. In _Git_, this place is called the __remote repository__
++ _GitHub_ is just a very popular __remote__
 + Some alternative remotes are:
   + [Bitbucket](https://bitbucket.org)
   + [GitLab](https://about.gitlab.com)
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/remotes.png')
+```
+]
+
  
 ---
 
@@ -165,15 +200,72 @@ knitr::include_graphics('imgs/cloning.png')
 
 
 ---
+# Git Areas
+.pull-left[
++ There are three core areas to git. These are the:
+  + Working Tree
+  + Staging Area (also known as Index)
+  + Local Repository. 
++ When working in a git repository files and modifications will travel from the Working Tree to the Staging Area and finish at the Local Repository. 
+]
 
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/git-areas.png')
+```
+]
+---
 
-# Commit
+# The Working Tree
+
++ This is the area where you are currently working. 
+
+--
++ Also known as the “__untracked__” area of git. 
+
+--
++ Here if you make changes and do not explicitly save them to git, you will lose the changes made to your files. 
+
+--
++ This loss of changes occurs because git is not aware of the files or changes in the __Working Tree__ until you tell it to pay attention to them.
+
+--
++ If you make changes to files in your working tree git will recognize that they are modified, but until you tell git “Hey pay attention to these files,” it won’t save anything that goes on in them.
+---
+
+# Staging Area
+
++ The Staging Area is when git starts tracking and saving changes that occur in files. 
++ You tell git that I want to track these specific files, then git says okay and moves them from you Working Tree to the Staging Area and says “Cool, I know about this file in its entirety.” 
++ However, if you make any more additional changes after adding a file to the Staging Area, git will not know about those specific changes until you tell it to see them. You explicitly have to tell git to notice the edits in your files.
+
+> When we stage a particular file we say we're __adding__ it to the __staging area__ because the command to do so is `git add 'filename'`
+
+---
+
+# Local Repository
+
++ The area that saves everything 
+
+--
++ That's it...
+
+--
++ We can add our staged changes to the __local repository__ by __committing__ them. 
+---
+
+# Commits
 
 + When you want to take a snapshot of a file or files, you create a **commit**
+
+--
 + A commit is equivalent to saving a version of a file(s)
-+ Every time you make a commit, you are leaving a breadcrumb of those files to come back to
+
+--
 + Git allows you to **tell the story of your project** by tracking changes through commit messages.
 
+--
++ Every time you make a commit, you are leaving a breadcrumb of those files to come back to
 
 ```{r, eval=TRUE, echo = FALSE, out.height = '300px'}
 knitr::include_graphics('imgs/commits-iris.png')
@@ -190,6 +282,8 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 + As the __owner__ of a repo you can:
   + Add collaborators
+
+--
   + Each collaborator can __read/write files__ in the repo, create __branches__, and __merge__ changes directly
   
   
@@ -257,7 +351,11 @@ knitr::include_graphics('imgs/tidyverse-issues.png')
 # Help me help you
 
 + If you use __`{ggbrookings}`__ and are having trouble or if you've found a bug, please submit an issue
+
+--
 + If you have a question or are running into a problem, it's likely other people are too. 
+
+--
 + Posting an issue gives me an opportunity to respond to these issues in a public forum that others can benefit from too!
 
 
@@ -269,8 +367,14 @@ class: center, middle, inverse, title-slide-ggbrookings
 ---
 # Parallel Universes
 + Everything we've covered so far has been very linear
+
+--
 + This is usually not how research work, often you want to experiment with easily discardable changes
+
+--
 + You can do this in Git with __branches__
+
+--
 + You can use __branches__ when working as a team or on a new feature
 
 
@@ -351,13 +455,250 @@ knitr::include_graphics('imgs/merge.png')
 
 ---
 
-# References
+class: center, middle, inverse, title-slide-ggbrookings
+# Integrating Git/GitHub with R
 
-
-TBD
 ---
 
 
+# Happy Git with R
+
++ You can choose from several options when using Git/GitHub:
+
+--
+  + Command-line (Terminal)
+  
+--
+  + GitHub Desktop App (Available from the Software Center)
+  
+--
+  + RStudio
+--
+
++ Since I do most of my work in `R`, I'd rather not have to open a new program just to use Git.
+
+--
++ You can use:
+  + The RStudio git pane for a point and click
+--
+
+  + Packages to facilate git workflows. I highly recommend __{`gert`}__ and __{`usethis`}__
+  
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/new-project.png')
+```
+]
+
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
++ Choose _Empty Project_
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/empty-project.png')
+```
+]
+
+---
+
+# Happy Git with R
+
+.pull-left[
++ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
++ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
++ Choose _Empty Project_
++ Check the option _Create a git repository_ before clicking _Create Project_
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/create-project.png')
+```
+]
+
+Congratulations, you have a new project with git versioning enabled!!
 
 
+---
 
+# Wait what about my old projects? 
+
+.pull-left[
++ It's not too late to set up git on your existing projects!!
++ Again, create a project but this time choose _Existing Directory_
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/existing-directory.png')
+```
+]
+
+---
+
+# Wait what about my old projects? 
+
+.pull-left[
++ It's not too late to set up git on your existing projects!!
++ Again, create a project but this time choose _Existing Directory_
++ Go to the _Tools menu_ -> _Version Control_ -> _Project Setup_…
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/project-setup.png')
+```
+]
+
+---
+
+# Wait what about my old projects? 
+
+.pull-left[
++ It's not too late to set up git on your existing projects!!
++ Again, create a project but this time choose _Existing Directory_
++ Go to the _Tools menu_ -> _Version Control_ -> _Project Setup_…
++ This will open a new window. Change the _None_ setting by choosing _Git_ from the drop-down menu
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/choose-git.png')
+```
+]
+
+---
+
+#  Git Pane
+
+.pull-left[
++ Now that you have enabled git versioning for your Project, a “Git” tab should have been added to your interface next to “Environment” and “History” tabs
++ Note that the __.gitignore file__ is automatically generated by RStudio. It lists all file formats you do _not_ want to track. 
++ You can edit this document to add any type of file you would like git not to track. One quick way of editing it is with `usethis::edit_git_ignore(scope = 'project')`
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/git-pane.png')
+```
+]
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/staging.png')
+```
+]
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/commiting.png')
+```
+]
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+  + Push/Pull
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/commiting.png')
+```
+]
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+  + Push/Pull
+  + Revert your changes
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/revert-commit.png')
+```
+]
+
+
+---
+
+# Using Git from RStudio
+
+.pull-left[
++ You can:
+  + Stage files
+  + Commit them
+  + Push/Pull
+  + Revert your changes
+  + View your repo's commit history
+]
+
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/commit-history.png')
+```
+]
+
+---
+
+# Using Git with R
+
+.pull-left[
+```{r}
+library(gert)
+git_status()
+```
+
+]
+
+.pull-right[
+```{r, eval=TRUE, echo=FALSE}
+git_status()
+```
+
+]
