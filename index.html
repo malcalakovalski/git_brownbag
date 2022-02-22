@@ -4,7 +4,7 @@
     <title>Git With The Times</title>
     <meta charset="utf-8" />
     <meta name="author" content="Manuel Alcala Kovalski" />
-    <meta name="date" content="2022-02-21" />
+    <meta name="date" content="2022-02-22" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="remark.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Git With The Times
 ### Manuel Alcala Kovalski
-### 2022-02-21
+### 2022-02-22
 
 ---
 
@@ -383,34 +383,6 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
----
-
-
-# Happy Git with R
-
-+ You can choose from several options when using Git/GitHub:
-  + Command-line (Terminal)
-  + GitHub Desktop App (Available from the Software Center)
-  + RStudio
-
-
-+ Since I do most of my work in `R`, I'd rather not have to open a new program just to use Git.
-+ You can use:
-  + The RStudio git pane for a point and click
-  + Packages to facilate git workflows. I highly recommend __{`gert`}__ and __{`usethis`}__
-  
----
-
-# Happy Git with R
-
-.pull-left[
-+ If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
-+ Create a new RStudio Project from the upper-right corner of the RStudio IDE window, choosing _New Project_
-]
-
-.pull-right[
-&lt;img src="imgs/new-project.png" style="display: block; margin: auto;" /&gt;
-]
 
 # Happy Git with R
 
@@ -616,36 +588,400 @@ Congratulations, you have a new project with git versioning enabled!!
 # Using Git with R
 
 .pull-left[
++ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
+]
+
+.pull-right[
 
 ```r
-library(gert)
-git_status()
+usethis::create_project('example-project')
 ```
+
+&lt;img src="imgs/usethis-create-project.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+# Using Git with R
+
+
+.pull-left[
++ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
+]
+
+.pull-right[
+
+```r
+usethis::create_project('example-project')
+```
+
+&lt;img src="imgs/usethis-create-project.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git with R
+
+
+.pull-left[
++ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
++ Next, we must make our new project a __git repository__
+]
+
+.pull-right[
+
+```r
+usethis::use_git()
+```
+
+&lt;img src="imgs/use-git.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git with R
+
+
+.pull-left[
++ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
++ Next, we must make our new project a __git repository__
++ Finally, we can create a __GitHub repository__ 
+]
+
+.pull-right[
+
+```r
+usethis::use_github()
+```
+
+&lt;img src="imgs/use-github.png" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+&lt;img src="imgs/example-github.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Using Git with R
+
+
+.pull-left[
++ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
++ Next, we must make our new project a __git repository__
++ Finally, we can create a __GitHub repository__ 
++ Now other people can __clone__ or __fork__ our repo!
+]
+
+.pull-right[
+
+```r
+# Clone
+usethis::create_from_github('https://github.com/malcalakovalski/example-project')
+# Fork
+usethis::create_from_github('https://github.com/malcalakovalski/example-project', fork = TRUE)
+```
+
+&lt;img src="imgs/create-from-github.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Contributing to someone else's projects
+
+&gt;Recall: A __pull request__ is how you propose a change to a GitHub repository. Think of it as a _request_ for the maintainer to _pull_ your changes into their repo.
+
+--
+
+We will suggest changes to the __README__ file on an example __GitHub repo__ I made titled `example-repo`. 
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ The first step is to __fork__ the repository, to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
+]
+
+.pull-right[
+
+
+```r
+usethis::create_from_github('https://github.com/mgalcala/example-repo', fork = TRUE)
+```
+
+&lt;img src="imgs/fork-example-repo.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ The first step is to __fork__ the repository, to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
++ We start the process of contributing to the package with __`pr_init()`__, which creates a branch in our repository for the pull request. 
 
 ]
 
 .pull-right[
-&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;#&amp;gt; &lt;span style='color: #555555;'&gt;# A tibble: 121 × 3&lt;/span&gt;
-#&amp;gt;   file                                                  
-#&amp;gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;                                                 
-#&amp;gt; &lt;span style='color: #555555;'&gt;1&lt;/span&gt; ~$cps-pop-control-table.xlsx                          
-#&amp;gt; &lt;span style='color: #555555;'&gt;2&lt;/span&gt; cache/unnamed-chunk-1_8d15cbf4dca5d12f53d6a50ef7c2e62…
-#&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; cache/unnamed-chunk-1_8d15cbf4dca5d12f53d6a50ef7c2e62…
-#&amp;gt; &lt;span style='color: #555555;'&gt;4&lt;/span&gt; cache/unnamed-chunk-1_8d15cbf4dca5d12f53d6a50ef7c2e62…
-#&amp;gt; &lt;span style='color: #555555;'&gt;5&lt;/span&gt; cache/unnamed-chunk-10_483cf07b834b5070f7196226021e72…
-#&amp;gt; &lt;span style='color: #555555;'&gt;6&lt;/span&gt; cache/unnamed-chunk-10_483cf07b834b5070f7196226021e72…
-#&amp;gt;   status  staged
-#&amp;gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;lgl&amp;gt;&lt;/span&gt; 
-#&amp;gt; &lt;span style='color: #555555;'&gt;1&lt;/span&gt; deleted FALSE 
-#&amp;gt; &lt;span style='color: #555555;'&gt;2&lt;/span&gt; new     FALSE 
-#&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; new     FALSE 
-#&amp;gt; &lt;span style='color: #555555;'&gt;4&lt;/span&gt; new     FALSE 
-#&amp;gt; &lt;span style='color: #555555;'&gt;5&lt;/span&gt; new     FALSE 
-#&amp;gt; &lt;span style='color: #555555;'&gt;6&lt;/span&gt; new     FALSE 
-#&amp;gt; &lt;span style='color: #555555;'&gt;# … with 115 more rows&lt;/span&gt;
-&lt;/CODE&gt;&lt;/PRE&gt;
+ &gt;  🛑 It is a good idea to make your pull requests from a __feature branch__, not from the repo’s __default branch__, which is __master__ here (another common choice is main)
+
+
+```r
+pr_init(branch = 'feature-improve-readme')
+```
+
+
+```r
+✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
+✓ Pulling changes from 'upstream/main'.
+✓ Creating and switching to local branch 'feature-improve-readme'.
+• Use `pr_push()` to create a PR.
+```
 
 ]
+
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ The first step is to __fork__ the repository, to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
++ We start the process of contributing to the package with __`pr_init()`__, which creates a branch in our repository for the pull request. 
++ This creates a local branch called `feature-improve-readme` and we switch to it (or __“check it out”__). Now we can work locally, making changes to files and committing them to Git
+]
+
+.pull-right[
+ &gt;  🛑 It is a good idea to make your pull requests from a __feature branch__, not from the repo’s __default branch__, which is __master__ here (another common choice is main)
+
+
+```r
+pr_init(branch = 'feature-improve-readme')
+```
+
+
+```r
+✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
+✓ Pulling changes from 'upstream/main'.
+✓ Creating and switching to local branch 'feature-improve-readme'.
+• Use `pr_push()` to create a PR.
+```
+
+]
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ Let's make our change to the __README__ file.
++ We can check that our changes are in the __working tree__
++ __Stage__ them (i.e., __add__ them to the __staging area__) 
++ __Commit them__
++ ❗ You can combine the last two steps with `gert::git_commit_all(message = 'your message')`
+]
+
+.pull-right[
+
+
+```r
+gert::git_status()
+```
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;#&amp;gt; &lt;span style='color: #555555;'&gt;# A tibble: 3 × 3&lt;/span&gt;
+#&amp;gt;   file               status   staged
+#&amp;gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;              &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;    &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;lgl&amp;gt;&lt;/span&gt; 
+#&amp;gt; &lt;span style='color: #555555;'&gt;1&lt;/span&gt; .gitignore         new      FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;2&lt;/span&gt; example-repo.Rproj new      FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; README.md          modified FALSE
+&lt;/CODE&gt;&lt;/PRE&gt;
+
+
+
+
+```r
+# Stage a specific file
+gert::git_add(files = 'README.md')
+# Stage every file in the working tree
+gert::git_add(files = '.')
+```
+
+
+
+```r
+gert::git_commit(message = 'Added information on what the repository is for')
+```
+
+]
+
+---
+class: center, middle, inverse, title-slide-ggbrookings
+
+### ⚠️ There was a typo in our commit: 
+### Instead of writing __"pull request"__ we wrote __"pull" __
+
+&lt;img src="imgs/diff.png" height="550px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+
+### If our __pull request__ is perfect, the maintainer will accept it (i.e. __merge__ it). 
+### Ours still needs some work, so the project owner  leaves us comments requesting changes.
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
+
+]
+
+.pull-right[
+
+
+```r
+usethis::pr_push()
+✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
+✓ Pushing local 'feature-improve-readme' branch to 'origin' remote.
+• Create PR at link given below
+✓ Opening URL 'https://github.com/malcalakovalski/example-repo/compare/feature-improve-readme'
+```
+This launches a browser window at the specified URL and we need to click on where it says __"Create Pull Request"__
+
+]
+
+
+---
+
+# Contributing to someone else's projects
+
++ If we had ownership over the repository, we could __push__ our changes to our collaborators with __`gert::git_push()`__
+--
+
++ In turn, they would be able __fetch__ and then __pull__ our changes with __`gert::git_fetch()`__ and __`gert::git_pull()`__
+
+--
++ Since we are not direct collaborators to the project, our workflow will be a little different. 
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
+
+
+]
+
+.pull-right[
+
+
+```r
+usethis::pr_push()
+✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
+✓ Pushing local 'feature-improve-readme' branch to 'origin' remote.
+• Create PR at link given below
+✓ Opening URL 'https://github.com/malcalakovalski/example-repo/compare/feature-improve-readme'
+```
+This launches a browser window at the specified URL and we need to click on where it says __"Create Pull Request"__
+
+]
+
+
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
++ GitHub will ping the project owner and they will review our pull request. We can view this pull request in the browser with `usethis::pr_view()`
+
+]
+
+.pull-left[
+&lt;img src="imgs/pr-push.png" width="800px" height="500px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Contributing to someone else's projects
+
+.pull-left[
++ __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
++ GitHub will ping the project owner and they will review our pull request. We can view this pull request in the browser with `usethis::pr_view()`
+
+]
+
+.pull-left[
+&lt;img src="imgs/pr-push.png" width="800px" height="500px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Contributing to someone else's projects
+
+####Since our pull request had a missing word, the project owner leaves us some comments requesting changes. 
+
+&lt;img src="imgs/pr-review.png" width="800px" height="500px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Contributing to someone else's projects
+
+#### We can then go back and complete the sentence, commit the correction, and push them back with __`usethis::pr_push()`__
+
+&lt;img src="imgs/pr-response.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Contributing to someone else's projects
+
++ Now the reviewer gets another chance to review our changes. 
++ At this point they might choose to just make the necessary changes and push their commits into our pull request to finish things up.
+
+--
++ The reviewer can fetch the pull request to their local machine 
+
+```r
+usethis::pr_fetch()
+```
+
+--
+
++ Fetching the PR creates a local branch for them called _`malcalakovalski-feature-improve-readme`_ 
+--
+
++ Once the reviewer makes the necessary changes they run __`pr_push()`__ to push their changes into our PR
+--
+
++ Finally, the reviewer merges our pull request on GitHub by running __`pr_finish()`__
+
+
+```r
+#&gt; ✔ Checking that remote branch 'malcalakovalski-feature-improve-readme' has the changes in 'local/malcalakovalski-feature-improve-readme'
+#&gt; ✔ Switching back to 'master' branch
+#&gt; ✔ Pulling changes from GitHub source repo 'origin/master'
+#&gt; ✔ Deleting local 'malcalakovalski-feature-improve-readme' branch
+#&gt; ✔ Removing remote 'mine-cetinkaya-rundel'
+```
+
+---
+
++ Since the reviewer has contributed some code to our pull request, we can get that code back to our computer with __`usethis::pr_pull()`__
+--
+
++ This feature can be useful in PRs if there are a few rounds of alternating contributions from you and the maintainer
+--
+
++ In this case it is optional, since the full PR has already been incorporated into the default branch of the source repo. 
+
+--
+.center[
+&lt;br&gt;
+###We have now successfully contributed to a project! 🎉🎉🎉
+]
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
