@@ -31,8 +31,6 @@ opts_chunk$set(
   message = FALSE,
   comment = "#>",
   fig.path = 'figure/',
-  cache.path = 'cache/',
-  cache = TRUE,
   fig.retina = 3,
   fig.align = 'center',
   fig.show = 'hold',
