@@ -6,6 +6,21 @@
     <meta name="author" content="Manuel Alcala Kovalski" />
     <meta name="date" content="2022-02-22" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="index_files/tile-view/tile-view.js"></script>
+    <script src="index_files/clipboard/clipboard.min.js"></script>
+    <link href="index_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="index_files/shareon/shareon.min.js"></script>
+    <link href="index_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="index_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="index_files/panelset/panelset.js"></script>
+    <link href="index_files/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="index_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="index_files/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="index_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="remark.css" type="text/css" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -25,15 +40,22 @@ class: center, middle, inverse, title-slide
 
 
 
+&lt;style type="text/css"&gt;
+.highlight-last-item &gt; ul &gt; li, 
+.highlight-last-item &gt; ol &gt; li {
+  opacity: 0.5;
+}
+.highlight-last-item &gt; ul &gt; li:last-of-type,
+.highlight-last-item &gt; ol &gt; li:last-of-type {
+  opacity: 1;
+}
+&lt;/style&gt;
 
 # Has this ever happened to you?
 &lt;img src="imgs/what-is-version-control.gif" width="550px" height="550px" style="display: block; margin: auto;" /&gt;
 
-
-
-
 ???
-ou know that great paper you just wrote, you were done with it, so you called it “final”. And then, you sent it to your advisor for her last comments. So you renamed it “final_thisone”. A few days passed, and you realized there was a typo in your figure, and you renamed it “final_thisone_really”. A couple of weeks pass, you get comments back from the reviewer, you start changing it and you renamed your file “final_submitted”. And then… your advisor think you should rewrite the conclusion and the file become “final_submitted_really”.
+You know that great paper you just wrote, you were done with it, so you called it “final”. And then, you sent it to your advisor for her last comments. So you renamed it “final_thisone”. A few days passed, and you realized there was a typo in your figure, and you renamed it “final_thisone_really”. A couple of weeks pass, you get comments back from the reviewer, you start changing it and you renamed your file “final_submitted”. And then… your advisor think you should rewrite the conclusion and the file become “final_submitted_really”.
 
 A year pass, you are mentoring a new undergrad in the lab, and she asks you for your final document so she can look at your methods… You open your folder, and mesmerized by the number of final labelled final, you forget which one if the correct one. Sounds familiar?
 
@@ -41,39 +63,49 @@ A year pass, you are mentoring a new undergrad in the lab, and she asks you for 
 
 # Enter Git/GitHub 
 
-+ Git and GitHub allow for easy management and sharing of data analytic content
+#### .large[__Git__ and __GitHub__ allow for easy management and sharing of data analytic content]
 
 &lt;img src="imgs/git-management.png" width="500px" height="450px" style="display: block; margin: auto;" /&gt;
 
 ---
 
-#Ok, so what is Git/GitHub? 
+#So what is Git/GitHub? 
 
-+ Just software!
- &gt; Git is an application that runs on your computer, like a web brower or a word processor  - [Tom Stuart](https://r-pkgs.org/index.html)
- 
+
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+Git is an application that runs on your computer, like a web brower or a word processor
+
+.tr[
+— Tom Stuart
+]]
+
+
 --
 
-+ GitHub is also a collaboration tool and an ecosystem of version controlled projects (repositories)
++ I.e, just software!
+--
+
++ __GitHub__ is also a collaboration tool and an ecosystem of __version controlled projects__ (repositories)
 
 
 ---
 
-# Sure, but how are Git/GitHub related?
+# How are Git/GitHub related?
 
 
 .pull-left[
 &lt;img src="imgs/git-logo.png" width="350px" height="200px" style="display: block; margin: auto;" /&gt;
 
-+ Git is the command line software that handles version control on your repository
-+ When you use GitHub, Git is always doing its things behind the scenes
++ __Git__ is the command line software that handles version control on your repository
++ When you use __GitHub__, __Git__ is always doing its things behind the scenes
 
 ]
 
 .pull-right[
 &lt;img src="imgs/github-logo.png" height="200px" style="display: block; margin: auto;" /&gt;
 
-+ GitHub is a service that hosts your repository online and helps you work with collaborators
++ __GitHub__ is a service that hosts your repository online and helps you work with collaborators
 + It's a web interface for version control 
 + Most often you will interface with GitHub with the command line, GitHub Desktop App, or RStudio.
 ]
@@ -85,28 +117,15 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
-# Version control
-
-+ A system for tracking changes (or versions) of anything (document, file, image, etc) 
-
---
-+ Version control allows you to **time-travel**
-
-???
-Unsure about this slide
-
-
----
-
 # Repository (Repo)
 
 + This is where all your project files live
 
 --
-+ You can use Git to take snapshots (version control) of all the files in a folder
++ You can use __Git__ to take snapshots (version control) of all the files in a folder
 
 --
-+ With GitHub your repo con live on your computer and on the web
++ With __GitHub__ your repo con live on your computer and on the web
 
 &lt;img src="imgs/git-brownbag-repo.png" height="400px" style="display: block; margin: auto;" /&gt;
 
@@ -115,7 +134,7 @@ Unsure about this slide
 # Repository (Repo)
 .pull-left[
 + It's really easy to create one from GitHub 
-+ Clicking on your repositories &gt; New will take you to a screen with some options for how to initialize your repository 
++ Clicking on _your repositories &gt; New_ will take you to a screen with some options for how to initialize your repository 
 ]
 
 .pull-right[
@@ -126,8 +145,8 @@ Unsure about this slide
 # Remote
 
 .pull-left[
-+ You should always back up your work, ideally somewhere different than your local drive. In _Git_, this place is called the __remote repository__
-+ _GitHub_ is just a very popular __remote__
++ You should always back up your work, ideally somewhere different than your local drive. In __Git__, this place is called the __remote repository__
++ __GitHub__ is just a very popular __remote__
 + Some alternative remotes are:
   + [Bitbucket](https://bitbucket.org)
   + [GitLab](https://about.gitlab.com)
@@ -142,18 +161,18 @@ Unsure about this slide
 
 # Cloning
 
-+ To get some work from a remote for the first time you need to __clone__ it!
++ To get some work from a __remote__ for the first time you need to __clone__ it!
 &lt;img src="imgs/cloning.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
 # Git Areas
 .pull-left[
-+ There are three core areas to git. These are the:
++ The changes we make to the __repo__ we __cloned__ will exist in one of the three core __areas__ to Git. These are the:
   + Working Tree
   + Staging Area (also known as Index)
   + Local Repository. 
-+ When working in a git repository files and modifications will travel from the Working Tree to the Staging Area and finish at the Local Repository. 
++ Files and modifications will travel from the Working Tree to the Staging Area and finish at the Local Repository. 
 ]
 
 .pull-right[
@@ -987,10 +1006,10 @@ usethis::pr_fetch()
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "slideNumberFormat": "%current%",
-"highlightStyle": "github",
+"highlightStyle": "dracula",
 "highlightLines": true,
 "ratio": "16:9",
-"countIncrementalSlides": true
+"countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
