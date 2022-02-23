@@ -51,17 +51,22 @@ class: center, middle, inverse, title-slide
 }
 &lt;/style&gt;
 
+
+.left-column[
 # Has this ever happened to you?
+]
+
+.right-column[
 &lt;img src="imgs/what-is-version-control.gif" width="550px" height="550px" style="display: block; margin: auto;" /&gt;
+]
 
 ???
 You know that great paper you just wrote, you were done with it, so you called it “final”. And then, you sent it to your advisor for her last comments. So you renamed it “final_thisone”. A few days passed, and you realized there was a typo in your figure, and you renamed it “final_thisone_really”. A couple of weeks pass, you get comments back from the reviewer, you start changing it and you renamed your file “final_submitted”. And then… your advisor think you should rewrite the conclusion and the file become “final_submitted_really”.
 
 A year pass, you are mentoring a new undergrad in the lab, and she asks you for your final document so she can look at your methods… You open your folder, and mesmerized by the number of final labelled final, you forget which one if the correct one. Sounds familiar?
-
 ---
 
-# Enter Git/GitHub 
+# Then Git &amp; GitHub are for you
 
 #### .large[__Git__ and __GitHub__ allow for easy management and sharing of data analytic content]
 
@@ -69,51 +74,43 @@ A year pass, you are mentoring a new undergrad in the lab, and she asks you for 
 
 ---
 
-#So what is Git/GitHub? 
+#So what is Git? 
 
 
 
 .bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
-Git is an application that runs on your computer, like a web brower or a word processor
+Git is a __version control system__. Its original purpose was to help groups of developers work collaboratively on big software projects. Git manages the evolution of a set of files – called a __repository__ or repo – in a sane, highly structured way. 
+
+It is like the “Track Changes” feature from Microsoft Word, but more rigorous, powerful, and scaled up to multiple files.
 
 .tr[
-— Tom Stuart
+— Jennifer Bryan, [_Excuse me, do you have a moment to talk about version control?_](https://peerj.com/preprints/3159v2/)
 ]]
 
 
---
-
-+ I.e, just software!
---
-
-+ __GitHub__ is also a collaboration tool and an ecosystem of __version controlled projects__ (repositories)
-
-
 ---
-
-# How are Git/GitHub related?
-
+# Wait so how is Git different than GitHub?
 
 .pull-left[
 &lt;img src="imgs/git-logo.png" width="350px" height="200px" style="display: block; margin: auto;" /&gt;
-
-+ __Git__ is the command line software that handles version control on your repository
++ __Git__ is the software you will use __locally__ to record changes to a set of files. 
 + When you use __GitHub__, __Git__ is always doing its things behind the scenes
-
 ]
+
+--
 
 .pull-right[
 &lt;img src="imgs/github-logo.png" height="200px" style="display: block; margin: auto;" /&gt;
++ __GitHub__ is a __hosting service__ that provides a Git-aware home for such projects on the internet. 
++ __GitHub__ is like DropBox or Google Drive, but more structured, powerful, and programmatic.
 
-+ __GitHub__ is a service that hosts your repository online and helps you work with collaborators
-+ It's a web interface for version control 
-+ Most often you will interface with GitHub with the command line, GitHub Desktop App, or RStudio.
 ]
 
 ---
 
 class: center, middle, inverse, title-slide-ggbrookings
-# Terms you should know 
+# Let's Git Started: Key Concepts
+
 
 ---
 
@@ -137,6 +134,7 @@ class: center, middle, inverse, title-slide-ggbrookings
 + Clicking on _your repositories &gt; New_ will take you to a screen with some options for how to initialize your repository 
 ]
 
+--
 .pull-right[
 &lt;img src="imgs/create-repo.png" style="display: block; margin: auto;" /&gt;
 ]
@@ -161,18 +159,23 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 # Cloning
 
-+ To get some work from a __remote__ for the first time you need to __clone__ it!
+.left-column[To get some work from a __remote__ for the first time you need to __clone__ it!.
+
+This is a fancy term for downloading a local copy of the repo]
+
+.right-column[
 &lt;img src="imgs/cloning.png" style="display: block; margin: auto;" /&gt;
+]
 
 
 ---
 # Git Areas
 .pull-left[
-+ The changes we make to the __repo__ we __cloned__ will exist in one of the three core __areas__ to Git. These are the:
-  + Working Tree
-  + Staging Area (also known as Index)
-  + Local Repository. 
-+ Files and modifications will travel from the Working Tree to the Staging Area and finish at the Local Repository. 
++ Once we start making changes to the __repo__ we __cloned__, these changes will exist in one of the three core __areas__ to Git: 
+  + __Working Tree__ (a.k.a untracked area)
+  + __Staging Area__ 
+  + __Local Repository__
++ Files and modifications will travel from the __Working Tree__ to the __Staging Area__ and finish at the __Local Repository__. 
 ]
 
 .pull-right[
@@ -180,30 +183,56 @@ class: center, middle, inverse, title-slide-ggbrookings
 ]
 ---
 
-# The Working Tree
+# The Working Tree 
 
 + This is the area where you are currently working. 
-
 --
-+ Also known as the “__untracked__” area of git. 
 
++ If you make changes to files in your __working tree__ Git will recognize that they are modified, but won't save anything that goes on in them
+  + This is why some people call it the “__untracked__” area of git. 
 --
-+ Here if you make changes and do not explicitly save them to git, you will lose the changes made to your files. 
 
++ Git will only start __tracking__ our files once we explicitly tell it to.
 --
-+ This loss of changes occurs because git is not aware of the files or changes in the __Working Tree__ until you tell it to pay attention to them.
 
---
-+ If you make changes to files in your working tree git will recognize that they are modified, but until you tell git “Hey pay attention to these files,” it won’t save anything that goes on in them.
+
+
+.pull-left[
+You can check where your files are with:
+
+```r
+gert::git_status()
+```
+]
+
+.pull-right[
+&lt;br&gt;
+&lt;PRE class="fansi fansi-output"&gt;&lt;CODE&gt;#&amp;gt; &lt;span style='color: #555555;'&gt;# A tibble: 5 × 3&lt;/span&gt;
+#&amp;gt;   file                        status   staged
+#&amp;gt;   &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;                       &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;chr&amp;gt;&lt;/span&gt;    &lt;span style='color: #555555; font-style: italic;'&gt;&amp;lt;lgl&amp;gt;&lt;/span&gt; 
+#&amp;gt; &lt;span style='color: #555555;'&gt;1&lt;/span&gt; imgs/collaborative-work.png new      FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;2&lt;/span&gt; imgs/example-repo.png       new      FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; imgs/pr-push.png            modified FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;4&lt;/span&gt; index.html                  modified FALSE 
+#&amp;gt; &lt;span style='color: #555555;'&gt;5&lt;/span&gt; index.Rmd                   modified FALSE
+&lt;/CODE&gt;&lt;/PRE&gt;
+
+]
+
 ---
 
 # Staging Area
 
-+ The Staging Area is when git starts tracking and saving changes that occur in files. 
-+ You tell git that I want to track these specific files, then git says okay and moves them from you Working Tree to the Staging Area and says “Cool, I know about this file in its entirety.” 
-+ However, if you make any more additional changes after adding a file to the Staging Area, git will not know about those specific changes until you tell it to see them. You explicitly have to tell git to notice the edits in your files.
+The __Staging Area__ is where Git starts tracking and saving changes that occur in files. 
 
-&gt; When we stage a particular file we say we're __adding__ it to the __staging area__ because the command to do so is `git add 'filename'`
+--
++ You tell __Git__ you want to track these specific files
+
+--
++ __Git__ moves them from your __Working Tree__ to the __Staging Area__ and says “Cool, I know about this file in its entirety.” 
+
+--
+&gt; When we stage a particular file we say we're __adding__ it to the __staging area__ because the terminal command staging is `git add 'filename'`
 
 ---
 
@@ -212,176 +241,98 @@ class: center, middle, inverse, title-slide-ggbrookings
 + The area that saves everything 
 
 --
-+ That's it...
+  + That's it...
 
 --
-+ We can add our staged changes to the __local repository__ by __committing__ them. 
++ Now we're ready to add our __staged changes__ to the __local repository__ by __committing__ them. 
 ---
 
-# Commits
+# Who's Scared of Commitment?
 
-+ When you want to take a snapshot of a file or files, you create a **commit**
-
---
-+ A commit is equivalent to saving a version of a file(s)
++ When you want to take a snapshot of a file, you create a **commit**
 
 --
-+ Git allows you to **tell the story of your project** by tracking changes through commit messages.
++ A __commit__ is equivalent to saving a version of a file(s)
 
 --
-+ Every time you make a commit, you are leaving a breadcrumb of those files to come back to
++ Every time you make a commit you must also write a short commit message. Ideally, this conveys the motivation for the change
+
+--
++ Commiting frequently will save you lots of headaches
+
 
 &lt;img src="imgs/commits-iris.png" height="300px" style="display: block; margin: auto;" /&gt;
+---
+class: center, middle,  title-slide-ggbrookings
 
+## Everything we've covered so far has been very linear
 
 ---
+class: center, middle,  title-slide-ggbrookings
 
+## In research projects you often want to experiment with easily discardable changes
+---
 class: center, middle, inverse, title-slide-ggbrookings
-# Collaborating with Git/GitHub
+# Branching Out and Trying New Things
 
 ---
-# You'll never _work_ alone 
+# Branching Out
 
-+ As the __owner__ of a repo you can:
-  + Add collaborators
+&gt; A __branch__ is an independent line of development within a repo, where the intent is usually to merge it into the master branch when ready
 
 --
-  + Each collaborator can __read/write files__ in the repo, create __branches__, and __merge__ changes directly
-  
-  
-&lt;img src="imgs/contributors.png" height="300px" style="display: block; margin: auto;" /&gt;
 
----
+.large[__Branches__ are useful for trying out stuff since they're really easy to throw away if you decide against your changes]
+--
 
-# Getting everyone on the same page
+.left-column[
 
-.pull-left[
-+ You can **fetch** changes to the repo on GitHub (the **remote repository**) to see if any modified files are not on your computer
-+ If you want those changes to take effect on your computer you can **pull** them from the remote repository on GitHub
-+ If *you* make a commit that you want others to pull, then you need to *push* it to the remote repository
++ You'll often use __branches__ when working as a team on a new feature for your project
 ]
-.pull-right[
 
-&lt;img src="imgs/fetch-v-pull.jpeg" style="display: block; margin: auto;" /&gt;
-
+.right-column[
+&lt;img src="imgs/fim-branch.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
-
-# But what about me???
-
-+ If you want others to see the changes *you've* made, you can **push** those commits to GitHub.
-&lt;img src="imgs/collaboration.png" height="300px" style="display: block; margin: auto;" /&gt;
-
----
-
-# Forking &amp; Pull Requests
-
-.pull-left[
-+ It would be scary if anyone could _make_ changes to your project files
-+ However, anyone can __*suggest*__ changes 
-+ __Forking__ allows you to work on a _copy_ of a repo you're not an official contributor to
-+ Once you're done with your __suggested__ changes you can make a __pull request__
-+ The owner of the repo will determine if your changes are cool and __merge__ them in
-+ __Pull requests__ allow you to collaborate on all public projects on GitHub
+# Branching Out
+.left-column[
++ The __default__ branch is called the __master branch__ 
 ]
+.right-column[
 
-
-.pull-right[
-&lt;img src="imgs/pull-request.png" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Issues
-
-+ You can also submit issues if you’re having trouble with software
-
-&lt;img src="imgs/tidyverse-issues.png" style="display: block; margin: auto;" /&gt;
-
----
-# Help me help you
-
-+ If you use __`{ggbrookings}`__ and are having trouble or if you've found a bug, please submit an issue
-
---
-+ If you have a question or are running into a problem, it's likely other people are too. 
-
---
-+ Posting an issue gives me an opportunity to respond to these issues in a public forum that others can benefit from too!
-
-
----
-
-class: center, middle, inverse, title-slide-ggbrookings
-# Git and GitHub let you experiment
-
----
-# Parallel Universes
-+ Everything we've covered so far has been very linear
-
---
-+ This is usually not how research work, often you want to experiment with easily discardable changes
-
---
-+ You can do this in Git with __branches__
-
---
-+ You can use __branches__ when working as a team or on a new feature
-
-
-&lt;img src="imgs/fim-branch.png" height="350px" style="display: block; margin: auto;" /&gt;
-
-
----
-# Parallel Universes
-.pull-left[
-+ The default branch is called the __master__ branch
-]
-.pull-left[
-
-&lt;img src="imgs/master-branch.png" height="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="imgs/master-branch.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
-# Parallel Universes
-.pull-left[
-+ The default branch is called the __master__ branch
+# Branching Out
+.left-column[
++ The __default__ branch is called the __master branch__
 + You can add your own branches too
 ]
-.pull-left[
+.right-column[
 &lt;br&gt;&lt;br&gt;
 &lt;img src="imgs/feature-branch.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
-# Parallel Universes
-.pull-left[
-+ The default branch is called the __master__ branch
+# Branching Out
+.left-column[
 + You can add your own branches too
-+ You'll often do a lot of work on a branch
++ The __default__ branch is called the __master branch__
++ You'll often do a lot of work on a branch 
 ]
-.pull-left[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.right-column[
 &lt;img src="imgs/wild-experiment-branch.png" style="display: block; margin: auto;" /&gt;
 ]
----
-
-class: center, middle, inverse, title-slide-ggbrookings
-
-## Branches are useful for trying out stuff since they're really easy to throw away if you decide against your changes
-
----
-
-class: center, middle, inverse, title-slide-ggbrookings
-
-## It's common for the master branch to be what you have published or finalized whereas other branches can contain work in progress
 
 ---
 
 # Merging your changes  
+
+&gt; It's common for the master branch to be what you have published or finalized whereas other branches can contain work in progress
 
 .pull-left[
 + Once you finish your work on a branch, you'll want to get it back into the master branch
@@ -397,13 +348,72 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
+# Pull Requests and Forks
+
++ __Pull request__ is a GitHub-specific way to propose changes to a repo with facilities for structured review.
++ They can be made between 
+  + Two __branches__ in the same repo
+  + Two independent copies of a repo, an original and a so-called __“fork”__.
+
+.large[We'll go over an example soon]
+---
+class: middle, center 
+## So far Git’s model of file management may seem uncomfortably rigid
+---
+class: middle, center
+## But the pros of Git outweigh the cons when you consider the overhead of working with other people, including your future self
+---
+
+
 class: center, middle, inverse, title-slide-ggbrookings
-# Integrating Git/GitHub with R
+# Collaborating with Git &amp; GitHub:
+# You'll never _work_ alone
+
+
+
+---
+
+# Adding Contributors
+.pull-left[
++ As the __owner__ of a repo you can:
+  + Add collaborators with permission to __read/write files__ in the repo, create __branches__, and __merge__ changes directly
+]
+
+.pull-right[
+  
+&lt;img src="imgs/contributors.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+] 
+
+
+---
+
+# _Git_ everyone on the same page
+
+.pull-left[
++ **Fetch** changes to the repo on GitHub (the **remote repository**) to see if any modified files are not on your computer
++ __Pull__ them from the remote repository on GitHub if you want those changes to take effect on your computer.
+]
+.pull-right[
+
+&lt;img src="imgs/fetch-v-pull.jpeg" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+.pull-left[
++ __Push__ your changes to the __remote__ if _you_ make a commit that you want others to __pull__
+]
+
+---
+
+class: center, middle, inverse, title-slide-ggbrookings
+# Integrating Git &amp; GitHub with R
 
 ---
 
 
-# Happy Git with R
+# What are our options?
 
 + You can choose from several options when using Git/GitHub:
 
@@ -428,7 +438,7 @@ class: center, middle, inverse, title-slide-ggbrookings
   
 ---
 
-# Happy Git with R
+# Setting Up a New Project
 
 .pull-left[
 + If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
@@ -441,7 +451,7 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
-# Happy Git with R
+# Setting Up a New Project
 
 .pull-left[
 + If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
@@ -455,7 +465,7 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
-# Happy Git with R
+# Setting Up a New Project
 
 .pull-left[
 + If you want to use the RStudio interface to control Git, you need to create an __RStudio Project__
@@ -468,7 +478,6 @@ class: center, middle, inverse, title-slide-ggbrookings
 &lt;img src="imgs/create-project.png" style="display: block; margin: auto;" /&gt;
 ]
 
-Congratulations, you have a new project with git versioning enabled!!
 
 
 ---
@@ -513,14 +522,22 @@ Congratulations, you have a new project with git versioning enabled!!
 &lt;img src="imgs/choose-git.png" style="display: block; margin: auto;" /&gt;
 ]
 
+--
+### Congratulations, your project has Git versioning enabled!🎉🎉🎉
+
 ---
 
-#  Git Pane
+# Using Git from RStudio
 
 .pull-left[
-+ Now that you have enabled git versioning for your Project, a “Git” tab should have been added to your interface next to “Environment” and “History” tabs
-+ Note that the __.gitignore file__ is automatically generated by RStudio. It lists all file formats you do _not_ want to track. 
-+ You can edit this document to add any type of file you would like git not to track. One quick way of editing it is with `usethis::edit_git_ignore(scope = 'project')`
++ A “Git” tab should have been added to your interface next to “Environment” and “History” tabs
++ Note the __.gitignore file__ automatically generated by RStudio—it lists all file formats you do _not_ want to track. 
++ You can edit this document to add any type of file you would like git not to track. 
+
+```r
+usethis::edit_git_ignore(scope = 'project')
+```
+
 ]
 
 .pull-right[
@@ -530,57 +547,53 @@ Congratulations, you have a new project with git versioning enabled!!
 ---
 
 # Using Git from RStudio
-
-.pull-left[
-+ You can:
-  + Stage files
+ From the Git pane you can:
+.left-column[
++ __Stage__ files
 ]
 
-.pull-right[
+.right-column[
 &lt;img src="imgs/staging.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 # Using Git from RStudio
-
-.pull-left[
-+ You can:
-  + Stage files
-  + Commit them
+ From the Git pane you can:
+.left-column[
++ Stage files
++ __Commit__ them
 ]
 
-.pull-right[
+.right-column[
 &lt;img src="imgs/commiting.png" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
 # Using Git from RStudio
-
-.pull-left[
-+ You can:
-  + Stage files
-  + Commit them
-  + Push/Pull
+ From the Git pane you can:
+.left-column[
++ Stage files
++ Commit them
++ __Push/Pull__
 ]
 
-.pull-right[
+.right-column[
 &lt;img src="imgs/commiting.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 # Using Git from RStudio
-
-.pull-left[
-+ You can:
-  + Stage files
-  + Commit them
-  + Push/Pull
-  + Revert your changes
+ From the Git pane you can:
+.left-column[
++ Stage files
++ Commit them
++ Push/Pull
++ __Revert__ your changes
 ]
 
-.pull-right[
+.right-column[
 &lt;img src="imgs/revert-commit.png" style="display: block; margin: auto;" /&gt;
 ]
 
@@ -588,39 +601,22 @@ Congratulations, you have a new project with git versioning enabled!!
 ---
 
 # Using Git from RStudio
-
-.pull-left[
-+ You can:
-  + Stage files
-  + Commit them
-  + Push/Pull
-  + Revert your changes
-  + View your repo's commit history
+ From the Git pane you can:
+.left-column[
++ Stage files
++ Commit them
++ Push/Pull
++ Revert your changes
++ View your repo's __commit history__
 ]
 
-.pull-right[
+.right-column[
 &lt;img src="imgs/commit-history.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-# Using Git with R
-
-.pull-left[
-+ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
-]
-
-.pull-right[
-
-```r
-usethis::create_project('example-project')
-```
-
-&lt;img src="imgs/usethis-create-project.png" style="display: block; margin: auto;" /&gt;
-]
----
-
-# Using Git with R
+#  Git with R
 
 
 .pull-left[
@@ -631,9 +627,14 @@ usethis::create_project('example-project')
 
 ```r
 usethis::create_project('example-project')
+
+
+✓ Setting active project to '/Users/malcalakovalski/example-project'
+✓ Writing 'example-project.Rproj'
+✓ Opening '/Users/malcalakovalski/example-project/' in new RStudio session
+✓ Setting active project to '&lt;no active project&gt;'
 ```
 
-&lt;img src="imgs/usethis-create-project.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -643,16 +644,20 @@ usethis::create_project('example-project')
 
 .pull-left[
 + We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
-+ Next, we must make our new project a __git repository__
++ Next, we must make our new project a __Git repository__
 ]
 
 .pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ```r
 usethis::use_git()
+
+✓ Setting active project to '/Users/malcalakovalski/example-project'
+✓ Initialising Git repo
+✓ Adding '.Rhistory', '.Rdata', '.httr-oauth', '.DS_Store' to '.gitignore'
 ```
 
-&lt;img src="imgs/use-git.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -667,40 +672,29 @@ usethis::use_git()
 ]
 
 .pull-right[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ```r
 usethis::use_github()
+
+✓ Setting active project to '/Users/malcalakovalski/example-project'
+✓ Creating GitHub repository 'malcalakovalski/example-project'
+✓ Setting remote 'origin' to 'git@github.com:malcalakovalski/example-project.git'
+✓ Pushing 'master' branch to GitHub and setting 'origin/master' as upstream branch
+✓ Opening URL 'https://github.com/malcalakovalski/example-project'
 ```
 
-&lt;img src="imgs/use-github.png" style="display: block; margin: auto;" /&gt;
-&lt;br&gt;
-&lt;img src="imgs/example-github.png" style="display: block; margin: auto;" /&gt;
+
+
 ]
 
 ---
+background-image: url(imgs/example-github.png)
+background-size: contain
+background-size: 85%, 20%
 
-# Using Git with R
-
-
-.pull-left[
-+ We can easily replicate the project setup we did with some nice functions from __`{usethis}`__
-+ Next, we must make our new project a __git repository__
-+ Finally, we can create a __GitHub repository__ 
-+ Now other people can __clone__ or __fork__ our repo!
-]
-
-.pull-right[
-
-```r
-# Clone
-usethis::create_from_github('https://github.com/malcalakovalski/example-project')
-# Fork
-usethis::create_from_github('https://github.com/malcalakovalski/example-project', fork = TRUE)
-```
-
-&lt;img src="imgs/create-from-github.png" style="display: block; margin: auto;" /&gt;
-
-]
+# ✅ Now people can __clone__ or __fork__ our repo!
 
 ---
 
@@ -710,13 +704,25 @@ usethis::create_from_github('https://github.com/malcalakovalski/example-project'
 
 --
 
-We will suggest changes to the __README__ file on an example __GitHub repo__ I made titled `example-repo`. 
++ We will suggest changes to the __README__ file on a toy __GitHub repo__ I creatively titled `example-repo`. 
+
+
+--
+
++ The __README__ simpy says "Example repo" which is not very descriptive.
+--
+
++ We will propose a slightly more informative opening sentence. 
+---
+# This is what the repo looks like right now
+
+&lt;img src="imgs/example-repo.png" style="display: block; margin: auto;" /&gt;
 ---
 
-# Contributing to someone else's projects
+# Our First Pull Request
 
 .pull-left[
-+ The first step is to __fork__ the repository, to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
++ First, __fork__ the repository to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
 ]
 
 .pull-right[
@@ -724,23 +730,33 @@ We will suggest changes to the __README__ file on an example __GitHub repo__ I m
 
 ```r
 usethis::create_from_github('https://github.com/mgalcala/example-repo', fork = TRUE)
-```
 
-&lt;img src="imgs/fork-example-repo.png" style="display: block; margin: auto;" /&gt;
+✓ Creating '/Users/malcalakovalski/Documents/Projects/example-repo/'
+✓ Forking 'mgalcala/example-repo'
+✓ Cloning repo from 'git@github.com:malcalakovalski/example-repo.git' into '/Users/malcalakovalski/Documents/Projects/example-repo'
+✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
+ℹ Default branch is 'main'
+✓ Adding 'upstream' remote: 'git@github.com:mgalcala/example-repo.git'
+✓ Pulling changes from 'upstream/main'.
+✓ Setting remote tracking branch for local 'main' branch to 'upstream/main'
+✓ Writing 'example-repo.Rproj'
+✓ Adding '.Rproj.user' to '.gitignore'
+✓ Opening '/Users/malcalakovalski/Documents/Projects/example-repo/' in new RStudio session
+✓ Setting active project to '&lt;no active project&gt;'
+```
 ]
+
 
 ---
 
-# Contributing to someone else's projects
+# Our First Pull Request
 
 .pull-left[
-+ The first step is to __fork__ the repository, to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
-+ We start the process of contributing to the package with __`pr_init()`__, which creates a branch in our repository for the pull request. 
-
++ First, __fork__ the repository to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
++ Next start the __pull request__ with __`pr_init()`__, which creates a branch in our pull request repository and switches to it (or __"checks it out"__). 
 ]
 
 .pull-right[
- &gt;  🛑 It is a good idea to make your pull requests from a __feature branch__, not from the repo’s __default branch__, which is __master__ here (another common choice is main)
 
 
 ```r
@@ -758,48 +774,30 @@ pr_init(branch = 'feature-improve-readme')
 ]
 
 
+--
+
+### ✅ Now we can work locally, make changes to files and commit hem to Git
+
 ---
+# Pull Request Workflow
 
-# Contributing to someone else's projects
-
-.pull-left[
-+ The first step is to __fork__ the repository, to get your own copy on GitHub, and then __clone__ that, to get your own local copy.
-+ We start the process of contributing to the package with __`pr_init()`__, which creates a branch in our repository for the pull request. 
-+ This creates a local branch called `feature-improve-readme` and we switch to it (or __“check it out”__). Now we can work locally, making changes to files and committing them to Git
+.left-column[
++ Change the __README__
 ]
 
-.pull-right[
- &gt;  🛑 It is a good idea to make your pull requests from a __feature branch__, not from the repo’s __default branch__, which is __master__ here (another common choice is main)
-
-
-```r
-pr_init(branch = 'feature-improve-readme')
-```
-
-
-```r
-✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
-✓ Pulling changes from 'upstream/main'.
-✓ Creating and switching to local branch 'feature-improve-readme'.
-• Use `pr_push()` to create a PR.
-```
-
+.right-column[
+We write "Example repo used in the Brookings Data Network Git brownbag to demonstrate the workflow of creating a pull"
 ]
 
 ---
-
-# Contributing to someone else's projects
-
-.pull-left[
-+ Let's make our change to the __README__ file.
-+ We can check that our changes are in the __working tree__
-+ __Stage__ them (i.e., __add__ them to the __staging area__) 
-+ __Commit them__
-+ ❗ You can combine the last two steps with `gert::git_commit_all(message = 'your message')`
+# Pull Request Workflow
+.left-column[
++ Change the __README__
++ See our files in the __working tree__
 ]
 
-.pull-right[
-
+.right-column[
+&lt;br&gt;&lt;br&gt;
 
 ```r
 gert::git_status()
@@ -812,8 +810,18 @@ gert::git_status()
 #&amp;gt; &lt;span style='color: #555555;'&gt;3&lt;/span&gt; README.md          modified FALSE
 &lt;/CODE&gt;&lt;/PRE&gt;
 
+]
 
+---
+# Pull Request Workflow
+.left-column[
++ Change the __README__
++ See our files in the __working tree__
++ __Stage__ them
+]
 
+.right-column[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ```r
 # Stage a specific file
@@ -823,56 +831,51 @@ gert::git_add(files = '.')
 ```
 
 
+]
+
+---
+# Pull Request Workflow
+.left-column[
++ Change the __README__
++ See our files in the __working tree__
++ __Stage__ them
++ __Commit__ them 
+]
+
+.right-column[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ```r
 gert::git_commit(message = 'Added information on what the repository is for')
 ```
 
-]
-
----
-class: center, middle, inverse, title-slide-ggbrookings
-
-### ⚠️ There was a typo in our commit: 
-### Instead of writing __"pull request"__ we wrote __"pull" __
-
-&lt;img src="imgs/diff.png" height="550px" style="display: block; margin: auto;" /&gt;
-
-
----
-
-class: center, middle, inverse, title-slide-ggbrookings
-
-### If our __pull request__ is perfect, the maintainer will accept it (i.e. __merge__ it). 
-### Ours still needs some work, so the project owner  leaves us comments requesting changes.
-
----
-
-# Contributing to someone else's projects
-
-.pull-left[
-+ __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
 
 ]
 
-.pull-right[
+---
+# Pull Request Workflow
+.left-column[
++ Change the __README__
++ See our files in the __working tree__
++ __Stage__ them
++ __Commit__ them 
+]
 
+.right-column[
+😎 __Tip:__ We can combine the staging and commiting steps with 
 
 ```r
-usethis::pr_push()
-✓ Setting active project to '/Users/malcalakovalski/Documents/Projects/example-repo'
-✓ Pushing local 'feature-improve-readme' branch to 'origin' remote.
-• Create PR at link given below
-✓ Opening URL 'https://github.com/malcalakovalski/example-repo/compare/feature-improve-readme'
+gert::git_commit_all(message = 'your commit message') 😎
 ```
-This launches a browser window at the specified URL and we need to click on where it says __"Create Pull Request"__
+
 
 ]
 
 
+
 ---
 
-# Contributing to someone else's projects
+# Usual Git Workflow for Collaboration
 
 + If we had ownership over the repository, we could __push__ our changes to our collaborators with __`gert::git_push()`__
 --
@@ -884,12 +887,10 @@ This launches a browser window at the specified URL and we need to click on wher
 
 ---
 
-# Contributing to someone else's projects
+# Sending Over Our Suggestion 
 
 .pull-left[
 + __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
-
-
 ]
 
 .pull-right[
@@ -910,70 +911,70 @@ This launches a browser window at the specified URL and we need to click on wher
 
 ---
 
-# Contributing to someone else's projects
+# Sending Over Our Suggestion
 
 .pull-left[
 + __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
 + GitHub will ping the project owner and they will review our pull request. We can view this pull request in the browser with `usethis::pr_view()`
-
 ]
 
 .pull-left[
-&lt;img src="imgs/pr-push.png" width="800px" height="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="imgs/pr-push.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-# Contributing to someone else's projects
+class: center, middle, inverse, title-slide-ggbrookings
 
-.pull-left[
-+ __Push__ the local change to our copy of _example-repo_ on GitHub using __`usethis::pr_push()`__
-+ GitHub will ping the project owner and they will review our pull request. We can view this pull request in the browser with `usethis::pr_view()`
+### If our _pull request_ is perfect, the maintainer will accept it (i.e. _merge_ it). 
+&lt;br&gt;
 
-]
+---
+class: center, middle, inverse, title-slide-ggbrookings
 
-.pull-left[
-&lt;img src="imgs/pr-push.png" width="800px" height="500px" style="display: block; margin: auto;" /&gt;
-]
+### ⚠️ Alas, there was an omission in our commit: 
+### Instead of writing _"pull request"_ we wrote _"pull" _
+
+&lt;img src="imgs/diff.png" height="550px" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+background-image: url(/imgs/pr-review.png)
+background-size: contain
+background-position: bottom
+background-size: 65%, 20%
+
+
+### 🚨🚨🚨 Since our pull request had a missing word, the project owner leaves us some comments requesting changes. 
+
 
 ---
 
-## Contributing to someone else's projects
+## Responding to our PR Review
 
-####Since our pull request had a missing word, the project owner leaves us some comments requesting changes. 
-
-&lt;img src="imgs/pr-review.png" width="800px" height="500px" style="display: block; margin: auto;" /&gt;
-
----
-
-## Contributing to someone else's projects
-
-#### We can then go back and complete the sentence, commit the correction, and push them back with __`usethis::pr_push()`__
+We can then go back and complete the sentence, commit the correction, and push them back with __`usethis::pr_push()`__
 
 &lt;img src="imgs/pr-response.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Contributing to someone else's projects
+## Reviewing a Pull Request
 
 + Now the reviewer gets another chance to review our changes. 
-+ At this point they might choose to just make the necessary changes and push their commits into our pull request to finish things up.
++ At this point they might choose to just make the necessary changes themselves and push their commits into our pull request to finish things up.
 
 --
-+ The reviewer can fetch the pull request to their local machine 
-
-```r
-usethis::pr_fetch()
-```
++ The reviewer can fetch the pull request to their local machine with __`usethis::pr_fetch()`__
 
 --
-
 + Fetching the PR creates a local branch for them called _`malcalakovalski-feature-improve-readme`_ 
---
 
+--
 + Once the reviewer makes the necessary changes they run __`pr_push()`__ to push their changes into our PR
---
 
+--
 + Finally, the reviewer merges our pull request on GitHub by running __`pr_finish()`__
 
 
@@ -986,6 +987,7 @@ usethis::pr_fetch()
 ```
 
 ---
+# Pulling Reviewer Changes
 
 + Since the reviewer has contributed some code to our pull request, we can get that code back to our computer with __`usethis::pr_pull()`__
 --
@@ -995,12 +997,22 @@ usethis::pr_fetch()
 
 + In this case it is optional, since the full PR has already been incorporated into the default branch of the source repo. 
 
---
-.center[
-&lt;br&gt;
-###We have now successfully contributed to a project! 🎉🎉🎉
-]
+---
+class: center, middle, inverse, title-slide-ggbrookings
 
+#We have successfully contributed to a project! 🎉🎉🎉
+
+---
+# Shameless Plug: Help me help you
+
++ If you use __`{ggbrookings}`__ and are having trouble, please submit an __issue__ on GitHub
++ Posting an issue gives me an opportunity to respond to your questions in a public forum that others can benefit from too!
++ Even better, if you have a suggestion for a new feature or an improvement to the package please submit a __pull request__!
+
+---
+class: center, middle, inverse, title-slide-ggbrookings
+
+#Thank you for your time! 🤗🤗🤗
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
