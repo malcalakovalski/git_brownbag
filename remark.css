@@ -170,8 +170,10 @@ pre {
   font-size: 0.9em;
   padding: 15px;
 }
+
+
 .inverse {
-  background: #003A79;
+  background: #FF961C;
   color: #fafafa;
 }
 .inverse a {

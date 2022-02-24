@@ -75,7 +75,7 @@ xaringanExtra::use_fit_screen()
 
 
 .left-column[
-# Has this ever happened to you?
+# Can you relate to this?
 ]
 
 .right-column[
@@ -85,22 +85,61 @@ knitr::include_graphics('imgs/what-is-version-control.gif')
 ]
 
 ???
-You know that great paper you just wrote, you were done with it, so you called it “final”. And then, you sent it to your advisor for her last comments. So you renamed it “final_thisone”. A few days passed, and you realized there was a typo in your figure, and you renamed it “final_thisone_really”. A couple of weeks pass, you get comments back from the reviewer, you start changing it and you renamed your file “final_submitted”. And then… your advisor think you should rewrite the conclusion and the file become “final_submitted_really”.
 
-A year pass, you are mentoring a new undergrad in the lab, and she asks you for your final document so she can look at your methods… You open your folder, and mesmerized by the number of final labelled final, you forget which one if the correct one. Sounds familiar?
+This comic is an illustratioin of me when I was writing my senior thesis 
+
+Really wish I had known about Git then!
+
+But this problem is still pretty frequent
+
 ---
 
-# Then Git & GitHub are for you
+.left-column[
+# How about this?
+]
 
-#### .large[__Git__ and __GitHub__ allow for easy management and sharing of data analytic content]
+.right-column[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/final-data.jpeg')
+```
+]
 
+???
+
+Always happens with multiple people working on spreadsheets
+
+---
+
+# Git & GitHub to the rescue
+
+.pull-left[
+Today we'll go over how Git & GitHub can help you
++ Backup your work
++ Keep track of your files 
++ Give a web presence to your projects
++ Try out new changes without fear
++ Collaborate effectively
+
+We will also cover
+
++ Key concepts
++ How to set up Git projects in R
++ Basic mechanics of the git workflow
+]
+
+
+.pull-right[
 ```{r, eval=TRUE, echo = FALSE, out.height = '450px', out.width='500px'}
 knitr::include_graphics('imgs/git-management.png')
 ```
+]
+
+???
+
 
 ---
 
-#So what is Git? 
+# So what is Git? 
 
 
 
@@ -113,11 +152,30 @@ It is like the “Track Changes” feature from Microsoft Word, but more rigorou
 — Jennifer Bryan, [_Excuse me, do you have a moment to talk about version control?_](https://peerj.com/preprints/3159v2/)
 ]]
 
+???
+Git is a version control system
+
+Structures our projects
+
+Facilitates collaboration
+
+Track changes on steroids
 
 ---
-# Wait so how is Git different than GitHub?
+# How is Git different from GitHub?
 
 .pull-left[
+```{r, eval=TRUE, echo = FALSE, out.height = '200px'}
+knitr::include_graphics('imgs/github-logo.png')
+```
++ __GitHub__ is a __hosting service__ that provides a Git-aware home for such projects on the internet. 
++ It's ike DropBox or Google Drive, but more structured, powerful, and programmatic.
+
+]
+
+--
+
+.pull-right[
 ```{r, eval=TRUE, echo = FALSE, out.height = '200px', out.width='350px'}
 knitr::include_graphics('imgs/git-logo.png')
 ```
@@ -125,16 +183,6 @@ knitr::include_graphics('imgs/git-logo.png')
 + When you use __GitHub__, __Git__ is always doing its things behind the scenes
 ]
 
---
-
-.pull-right[
-```{r, eval=TRUE, echo = FALSE, out.height = '200px'}
-knitr::include_graphics('imgs/github-logo.png')
-```
-+ __GitHub__ is a __hosting service__ that provides a Git-aware home for such projects on the internet. 
-+ __GitHub__ is like DropBox or Google Drive, but more structured, powerful, and programmatic.
-
-]
 
 ---
 
@@ -144,34 +192,23 @@ class: center, middle, inverse, title-slide-ggbrookings
 
 ---
 
-# Repository (Repo)
+# Repository 
 
-+ This is where all your project files live
++ A repository is a directory of files that Git manages holistically
 
 --
-+ You can use __Git__ to take snapshots (version control) of all the files in a folder
++ You can use __Git__ to take snapshots (version control) of all the files in your repository
 
 --
 + With __GitHub__ your repo con live on your computer and on the web
-
 ```{r, eval=TRUE, echo = FALSE, out.height='400px'}
 knitr::include_graphics('imgs/git-brownbag-repo.png')
 ```
+???
 
----
+This is a screenshot of the repository for this presentation
 
-# Repository (Repo)
-.pull-left[
-+ It's really easy to create one from GitHub 
-+ Clicking on _your repositories > New_ will take you to a screen with some options for how to initialize your repository 
-]
 
---
-.pull-right[
-```{r, eval=TRUE, echo = FALSE}
-knitr::include_graphics('imgs/create-repo.png')
-```
-]
 ---
 
 # Remote
@@ -190,12 +227,28 @@ knitr::include_graphics('imgs/remotes.png')
 ```
 ]
 
- 
+---
+
+# Remote
+.pull-left[
++ It's really easy to create one from GitHub 
++ Click on _your repositories > New_ 
++ Choose some options to initialize your repository 
+
+]
+
+--
+.pull-right[
+```{r, eval=TRUE, echo = FALSE}
+knitr::include_graphics('imgs/create-repo.png')
+```
+]
+
 ---
 
 # Cloning
 
-.left-column[To get some work from a __remote__ for the first time you need to __clone__ it!.
+.left-column[To get some work from a __remote__ for the first time you need to __clone__ it
 
 This is a fancy term for downloading a local copy of the repo]
 
@@ -205,13 +258,18 @@ knitr::include_graphics('imgs/cloning.png')
 ```
 ]
 
+???
+
+If we want to have the repository on our computer we need to clone it
+
+Cloning is like downloading all the files but also their entire history
 
 ---
 # Git Areas
 .pull-left[
 + Once we start making changes to the __repo__ we __cloned__, these changes will exist in one of the three core __areas__ to Git: 
   + __Working Tree__ (a.k.a untracked area)
-  + __Staging Area__ 
+  + __Staging Area__ (a.k.a the index)
   + __Local Repository__
 + Files and modifications will travel from the __Working Tree__ to the __Staging Area__ and finish at the __Local Repository__. 
 ]
@@ -221,6 +279,11 @@ knitr::include_graphics('imgs/cloning.png')
 knitr::include_graphics('imgs/git-areas.png')
 ```
 ]
+
+???
+Lifecycle of our changes
+
+
 ---
 
 # The Working Tree 
@@ -251,12 +314,21 @@ gert::git_status()
 ```
 
 ]
-
 ---
 
 # Staging Area
 
 The __Staging Area__ is where Git starts tracking and saving changes that occur in files. 
+
+???
+
+If your workflow is to commit every changed file whenever its time to commit then you wont need staging and can just use
+
+git commit -am “another bunch of edits”
+
+But if you want to review the changes you did before committing then I can recommend reviewing changes to each file and then add them to staging. When you are satisfied with you change set then you can commit your staging area.
+
+Sometimes you end up with multiple unrelated changes in your working copy. Using staging can help you sort your changes to relevant feature branches. 
 
 --
 + You tell __Git__ you want to track these specific files
@@ -265,7 +337,9 @@ The __Staging Area__ is where Git starts tracking and saving changes that occur 
 + __Git__ moves them from your __Working Tree__ to the __Staging Area__ and says “Cool, I know about this file in its entirety.” 
 
 --
-> When we stage a particular file we say we're __adding__ it to the __staging area__ because the terminal command staging is `git add 'filename'`
++ Staging can help us group related changes and make our commits smaller 
+
+
 
 ---
 
@@ -280,7 +354,7 @@ The __Staging Area__ is where Git starts tracking and saving changes that occur 
 + Now we're ready to add our __staged changes__ to the __local repository__ by __committing__ them. 
 ---
 
-# Who's Scared of Commitment?
+# Don't be afraid of commitment
 
 + When you want to take a snapshot of a file, you create a **commit**
 
@@ -298,31 +372,35 @@ The __Staging Area__ is where Git starts tracking and saving changes that occur 
 knitr::include_graphics('imgs/commits-iris.png')
 ```
 ---
-class: center, middle,  title-slide-ggbrookings
+class: center, middle, inverse, title-slide-ggbrookings
 
-## Everything we've covered so far has been very linear
+## So far everything has been very linear
 
----
-class: center, middle,  title-slide-ggbrookings
+???
 
-## In research projects you often want to experiment with easily discardable changes
+You make changes to a file, group them, commit them
+
+But in reality we'll change our mind, make mistakes, and coordinate with making changes with multiple people
+
 ---
 class: center, middle, inverse, title-slide-ggbrookings
-# Branching Out and Trying New Things
+# Let's branch out and try new things
+
+???
+The really cool part about Git is that it lets us try out stuff
 
 ---
 # Branching Out
 
-> A __branch__ is an independent line of development within a repo, where the intent is usually to merge it into the master branch when ready
++ A __branch__ is an independent line of development within a repo
 
 --
++ They are useful for trying out stuff since they're really easy to throw away if you decide against your changes
 
-.large[__Branches__ are useful for trying out stuff since they're really easy to throw away if you decide against your changes]
 --
-
 .left-column[
 
-+ You'll often use __branches__ when working as a team on a new feature for your project
++ You can use __branches__ to work as a team on a new feature for your project!
 ]
 
 .right-column[
@@ -330,6 +408,12 @@ class: center, middle, inverse, title-slide-ggbrookings
 knitr::include_graphics('imgs/fim-branch.png')
 ```
 ]
+
+???
+
+Talk about FIM
+
+It's common for the master to be posted somewhere so to not mess up the live version we sometimes work on branches
 
 ---
 # Branching Out
@@ -348,7 +432,7 @@ knitr::include_graphics('imgs/master-branch.png')
 # Branching Out
 .left-column[
 + The __default__ branch is called the __master branch__
-+ You can add your own branches too
++ You can add (and discard) your own branches 
 ]
 .right-column[
 <br><br>
@@ -371,6 +455,13 @@ knitr::include_graphics('imgs/wild-experiment-branch.png')
 ```
 ]
 
+???
+
+For example: I want to add some new theme functions and color palettes to my package. 
+Or I want to refactor some old code and also need to make some new charts. 
+
+Can work on these in separate branches.
+
 ---
 
 # Merging your changes  
@@ -391,22 +482,19 @@ knitr::include_graphics('imgs/merge.png')
 ```
 ]
 
----
 
-# Pull Requests and Forks
-
-+ __Pull request__ is a GitHub-specific way to propose changes to a repo with facilities for structured review.
-+ They can be made between 
-  + Two __branches__ in the same repo
-  + Two independent copies of a repo, an original and a so-called __“fork”__.
-
-.large[We'll go over an example soon]
 ---
 class: middle, center 
-## So far Git’s model of file management may seem uncomfortably rigid
+## Git’s model of file management may seem uncomfortably rigid
 ---
 class: middle, center
-## But the pros of Git outweigh the cons when you consider the overhead of working with other people, including your future self
+## But it will be worth it once we start collaborating 
+
+???
+
+What's really powerful about Git is that it enables the distribution of files across different people, computers, and time.
+
+Once you consider the overhead of working with other people (including your future self) the pros of Git will be worth the learning curve
 ---
 
 
@@ -438,7 +526,7 @@ knitr::include_graphics('imgs/contributors.png')
 # _Git_ everyone on the same page
 
 .pull-left[
-+ **Fetch** changes to the repo on GitHub (the **remote repository**) to see if any modified files are not on your computer
++ **Fetch** changes to the **remote repository** to see if any modified files are not on your computer
 + __Pull__ them from the remote repository on GitHub if you want those changes to take effect on your computer.
 ]
 .pull-right[
@@ -449,6 +537,16 @@ knitr::include_graphics('imgs/fetch-v-pull.jpeg')
 
 ]
 
+???
+
+I'm working on some changes and I want other people to have them.
+
+First need to ensure I have the most recent files
+
+If not, I can pull those changes and then push my changes
+
+You can think of fetching as putting an item in your shopping chart and pulling as buying it and taking it home with you
+
 --
 .pull-left[
 + __Push__ your changes to the __remote__ if _you_ make a commit that you want others to __pull__
@@ -456,8 +554,27 @@ knitr::include_graphics('imgs/fetch-v-pull.jpeg')
 
 ---
 
+# Pull Requests and Forks
+
++ __Pull request__ is a GitHub-specific way to propose changes to a repo with facilities for structured review.
++ They can be made between 
+  + Two __branches__ in the same repo
+  + Two independent copies of a repo, an original and a __“fork”__.
+
+???
+
+ PR's comes up when contributing to other people's projects
+
+A GitHub fork is a copy of a repository (repo) that sits in your account rather than the account from which you forked the data from.
+--
+
+.large[We'll go over an example soon]
+
+---
+
 class: center, middle, inverse, title-slide-ggbrookings
 # Integrating Git & GitHub with R
+
 
 ---
 
@@ -537,7 +654,7 @@ knitr::include_graphics('imgs/create-project.png')
 
 ---
 
-# Wait what about my old projects? 
+# What about my old projects? 
 
 .pull-left[
 + It's not too late to set up git on your existing projects!!
@@ -552,7 +669,7 @@ knitr::include_graphics('imgs/existing-directory.png')
 
 ---
 
-# Wait what about my old projects? 
+# What about my old projects? 
 
 .pull-left[
 + It's not too late to set up git on your existing projects!!
@@ -568,7 +685,7 @@ knitr::include_graphics('imgs/project-setup.png')
 
 ---
 
-# Wait what about my old projects? 
+# What about my old projects? 
 
 .pull-left[
 + It's not too late to set up git on your existing projects!!
@@ -708,6 +825,11 @@ usethis::create_project('example-project')
 
 ]
 
+???
+
+If you use Git a lot using the GUI can slow you down so I prefer using some code
+
+usethis is mainly used to automate things that come up when setting up a project
 ---
 
 # Using Git with R
@@ -933,6 +1055,7 @@ gert::git_commit_all(message = 'your commit message') 😎
 
 
 ]
+
 
 
 
